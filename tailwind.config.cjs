@@ -4,13 +4,15 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {
-        skewing: {
-          '0%, 100%': { transform: 'skew(0deg, 0deg) translateY(0px)' },
-          '50%': { transform: 'skew(-1deg, -1deg) translateY(-10px)' },
+        breath: {
+          '0%, 100%': { transform: 'translate(0px,0px)' },
+          '50%': {
+            transform: 'translate(10px,-30px) scaleX(1.1)',
+          },
         },
       },
       animation: {
-        skewing: 'skewing 6s ease-in-out infinite',
+        breath: 'breath 10s ease-in-out infinite',
       },
     },
   },
