@@ -2,6 +2,24 @@ import { useState } from 'react'
 
 import PowerDropImage from '@/assets/powerdrop.png'
 
+const NAVBAR_CONFIG = [
+  {
+    name: 'home',
+    pseudoBeforeClassName: "before:content-['home.']",
+    link: '#',
+  },
+  {
+    name: 'changelog',
+    pseudoBeforeClassName: "before:content-['changelog.']",
+    link: '#',
+  },
+  {
+    name: 'projects',
+    pseudoBeforeClassName: "before:content-['projects.']",
+    link: '#',
+  },
+]
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -52,42 +70,22 @@ const Navbar = () => {
             : 'h-0 -translate-y-[100vh] opacity-0'
         } absolute left-0 top-0 z-10 flex w-screen flex-col items-start justify-center gap-5 overflow-hidden bg-black/80 px-5 font-sans text-5xl font-extrabold transition-all duration-500 md:text-8xl [&>li]:ml-3 [&>li]:origin-left [&>li]:scale-x-[1.3] md:[&>li]:ml-[30vw]`}
       >
-        <li className="group relative h-[60px] cursor-pointer md:h-[120px]">
-          <div className="absolute h-[60px] w-[30rem] translate-x-[-30rem] overflow-hidden transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px]">
-            <a
-              className="absolute h-[60px] translate-x-[30rem] overflow-hidden text-white  transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px]"
-              href="#"
-            >
-              home
-              <span className="text-brand-green">.</span>
-            </a>
-          </div>
-          <span className="before: before:text-white/80 before:content-['home.']"></span>
-        </li>
-        <li className="group relative h-[60px] cursor-pointer md:h-[120px]">
-          <div className="absolute h-[60px] w-[30rem] translate-x-[-30rem] overflow-hidden transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px]">
-            <a
-              className="absolute h-[60px] translate-x-[30rem] overflow-hidden text-white  transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px]"
-              href="#"
-            >
-              changelog
-              <span className="text-brand-green">.</span>
-            </a>
-          </div>
-          <span className="before: before:text-white/80 before:content-['changelog.']"></span>
-        </li>
-        <li className="group relative cursor-pointer">
-          <div className="absolute h-[60px] w-[30rem] translate-x-[-30rem] overflow-hidden transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px]">
-            <a
-              className="absolute h-[60px] translate-x-[30rem] overflow-hidden text-white  transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px]"
-              href="#"
-            >
-              projects
-              <span className="text-brand-green">.</span>
-            </a>
-          </div>
-          <span className="before: before:text-white/80 before:content-['projects.']"></span>
-        </li>
+        {NAVBAR_CONFIG.map((list) => (
+          <li className="group relative cursor-pointer" key={list.name}>
+            <div className="absolute h-[60px] w-[30rem] translate-x-[-30rem] overflow-hidden transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px]">
+              <a
+                className="absolute h-[60px] translate-x-[30rem] overflow-hidden text-white  transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px]"
+                href={list.link}
+              >
+                {list.name}
+                <span className="text-brand-green">.</span>
+              </a>
+            </div>
+            <span
+              className={`before: before:text-white/80 ${list.pseudoBeforeClassName}`}
+            ></span>
+          </li>
+        ))}
       </ul>
     </nav>
   )
