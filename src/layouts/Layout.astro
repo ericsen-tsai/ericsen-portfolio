@@ -1,6 +1,7 @@
 ---
 import Navbar from '../components/Navbar'
-import '@fontsource/noto-sans'
+import '@fontsource/bowlby-one'
+import '@fontsource/open-sans'
 export interface Props {
   title: string
 }
@@ -13,7 +14,7 @@ const { title } = Astro.props
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/icon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
@@ -26,7 +27,12 @@ const { title } = Astro.props
       }
 
       body {
-        font-family: 'Noto Sans', sans-serif;
+        font-family: 'Open Sans', sans-serif;
+      }
+
+      ::selection {
+        background: rgba(214, 55, 46, 0.05);
+        color: #1b998b;
       }
     </style>
   </body>
