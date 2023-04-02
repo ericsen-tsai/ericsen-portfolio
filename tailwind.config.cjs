@@ -1,3 +1,4 @@
+const plugin = require('tailwindcss/plugin')
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
@@ -36,7 +37,26 @@ module.exports = {
         'brand-green': '#1B998B',
         'brand-yellow': '#C5D86D',
       },
+      textShadow: {
+        sm: '0 1px 2px var(--tw-shadow-color)',
+        DEFAULT: '0 2px 4px var(--tw-shadow-color)',
+        lg: '0 8px 16px var(--tw-shadow-color)',
+        xl: '0 16px 32px var(--tw-shadow-color)',
+        outline:
+          '2px 2px 0px var(--tw-shadow-color), 1px 1px 0px var(--tw-shadow-color), 2px 2px 0px var(--tw-shadow-color), 2px 3px 0px var(--tw-shadow-color)',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      )
+    }),
+  ],
 }

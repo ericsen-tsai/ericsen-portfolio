@@ -1,11 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import ReactIcon from '@/assets/react-icon.png'
+import LogoMarquee from '@/components/LogoMarquee'
+import ReactIcon from '@/assets/react-icon.webp'
 import NextIcon from '@/assets/next-icon.png'
-import MuiIcon from '@/assets/mui-icon.png'
-import ReactQueryIcon from '@/assets/react-query-icon.png'
-import ReduxIcon from '@/assets/reduxicon.png'
-import TailwindCssIcon from '@/assets/tailwind-css-icon.png'
 ---
 
 <Layout title="ET's studio">
@@ -25,7 +22,7 @@ import TailwindCssIcon from '@/assets/tailwind-css-icon.png'
           <img
             src={ReactIcon}
             alt="react-icon"
-            class="inline-block aspect-[6/5] h-[1rem] translate-y-[-3px]"
+            class="inline-block aspect-square h-[1rem] translate-y-[-3px]"
           />
           React.js
         </span> & <span class="inline-block">
@@ -42,6 +39,7 @@ import TailwindCssIcon from '@/assets/tailwind-css-icon.png'
         passionate about crafting elegant, functional designs to improve user experience.
       </p>
     </div>
+    <LogoMarquee client:only="react" />
   </main>
 </Layout>
 
