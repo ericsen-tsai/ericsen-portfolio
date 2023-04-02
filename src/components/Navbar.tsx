@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 
-import PowerDropImage from '@/assets/powerdrop.png'
 import Logo from '@/assets/logo_white.png'
 
 const NAVBAR_CONFIG = [
@@ -59,7 +58,7 @@ const Navbar = () => {
       }`}
     >
       <div className="relative z-20 flex h-[4rem] items-center px-10">
-        <div className="flex aspect-square h-[80%] cursor-pointer items-center justify-center rounded-full bg-brand-green/90 p-3 hover:animate-flash">
+        <div className="flex aspect-square h-[60%] cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-brand-green to-brand-yellow p-2 hover:animate-flash">
           <img src={Logo} className="aspect-square h-full" />
         </div>
 
