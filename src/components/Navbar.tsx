@@ -25,8 +25,8 @@ const NAVBAR_CONFIG = [
     link: '#',
   },
   {
-    name: 'projects',
-    pseudoBeforeClassName: "before:content-['projects.']",
+    name: 'works',
+    pseudoBeforeClassName: "before:content-['works.']",
     link: '#',
   },
 ]
@@ -37,16 +37,16 @@ const Navbar = () => {
   const handleToggle = () => setIsOpen((prev) => !prev)
 
   return (
-    <nav className="fixed top-0 z-[999] h-screen w-screen overflow-hidden bg-[transparent]">
+    <nav className="fixed top-0 z-[999] h-[4rem] w-screen bg-[transparent]">
       <div className="relative z-20 flex h-[4rem] items-center px-10">
-        <div className="flex aspect-square h-[80%] cursor-pointer items-center justify-center rounded-full bg-brand-green/90 p-4 hover:animate-flash">
+        <div className="flex aspect-square h-[80%] cursor-pointer items-center justify-center rounded-full bg-brand-green/90 p-3 hover:animate-flash">
           <img src={Logo} className="aspect-square h-full" />
         </div>
 
         <h3
           className={`ml-auto mr-2 transition-all duration-500 ${
             isOpen && 'text-white'
-          } scale-x-[1.2] text-lg font-extrabold`}
+          } scale-x-[1.2] font-light`}
         >
           menu
         </h3>

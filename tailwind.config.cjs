@@ -13,27 +13,21 @@ module.exports = {
           },
         },
         flash: {
-          '0%': {
+          from: {
             filter: 'hue-rotate(0deg)',
-            transform: 'rotate(0deg) scale(1)',
           },
-          '50%': {
-            filter: 'hue-rotate(180deg)',
-            transform: 'rotate(180deg) scale(1.5,1)',
-          },
-          '100%': {
+          to: {
             filter: 'hue-rotate(360deg)',
-            transform: 'rotate(360deg) scale(1)',
           },
         },
       },
       animation: {
         breath: '10s ease-in-out infinite breath',
-        flash: '1.5s ease flash ',
+        flash: '3s linear infinite flash ',
       },
       fontFamily: {
         cursive: ['Bowlby One', 'cursive'],
-        sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
+        sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         'brand-red': '#D7263D',

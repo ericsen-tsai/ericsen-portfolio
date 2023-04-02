@@ -449,10 +449,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/bowlby-one/-/bowlby-one-4.5.10.tgz#8e0b4def2b56cdbcf68e2a4c1d0f3b2f99fdf795"
   integrity sha512-XL/2UE0ZSjwl+LjCgpZlx4RPbkfMsmnj85ZxAAkjva1oChW6dyEMgq9Y3Td84/R8/5Z0KeZcWFAYxM996pHLow==
 
-"@fontsource/open-sans@^4.5.14":
+"@fontsource/montserrat@^4.5.14":
   version "4.5.14"
-  resolved "https://registry.yarnpkg.com/@fontsource/open-sans/-/open-sans-4.5.14.tgz#b3e1665c0b3fdfc1f030ded2843749e3cf3a5900"
-  integrity sha512-mBXIIETBlW8q/ocuUN0hyGow2iuf75hQEHQt8R/RJ/HcphVbLg8KB7pHYGbFGDqs75W+SWvTC7JkVeAjT65BuQ==
+  resolved "https://registry.yarnpkg.com/@fontsource/montserrat/-/montserrat-4.5.14.tgz#5f4bfc5e7f234a986d94d9e7e7193f852e6971e3"
+  integrity sha512-fTvrteVzuFUePhr4QYBGoK8G/YHLJ3IhF1HhKg0AxcFvZajJT7rM7ULdmKLSd2PkX44R3aaFZq1zDbmjbGGI+w==
 
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
