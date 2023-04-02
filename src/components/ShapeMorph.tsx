@@ -2,10 +2,10 @@ import { useEffect } from 'react'
 import anime from 'animejs/lib/anime.es.js'
 
 const ShapeMorph = ({
-  shortSideSide = 500,
+  shortSideSize = 500,
   ratio = 2,
 }: {
-  shortSideSide?: number
+  shortSideSize?: number
   ratio?: number
 }) => {
   useEffect(() => {
@@ -37,8 +37,8 @@ const ShapeMorph = ({
       id="sw-js-blob-svg"
       viewBox="0 0 100 100"
       xmlns="http://www.w3.org/2000/svg"
-      width={(shortSideSide * ratio).toString()}
-      height={shortSideSide.toString()}
+      width={(shortSideSize * ratio).toString()}
+      height={shortSideSize.toString()}
     >
       <defs>
         <linearGradient id="sw-gradient" x1="0" x2="1" y1="1" y2="0">

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import PowerDropImage from '@/assets/powerdrop.png'
+import Logo from '@/assets/logo.png'
 
 const NAVBAR_CONFIG = [
   {
@@ -27,11 +28,8 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 z-[999] h-screen w-screen overflow-hidden bg-[transparent]">
-      <div className="relative z-20 flex h-[8rem] items-center px-10">
-        <img
-          src={PowerDropImage}
-          className="aspect-square h-full max-h-[20vw]"
-        />
+      <div className="relative z-20 flex h-[4rem] items-center px-10">
+        <img src={Logo} className="aspect-square h-[80%]" />
         <h3
           className={`ml-auto mr-2 transition-all duration-500 ${
             isOpen && 'text-white'
@@ -50,14 +48,14 @@ const Navbar = () => {
             className={`m-[3px] h-[5px] w-[40px] transition-all duration-500 ${
               isOpen
                 ? '-translate-x-[4px] translate-y-[5px] -rotate-45'
-                : 'rotate-90'
+                : 'rotate-[113.5deg]'
             }`}
           ></div>
           <div
             className={`m-[3px] h-[5px] w-[40px] transition-all duration-500 ${
               isOpen
-                ? '-translate-x-[4px] -translate-y-[5px] rotate-45'
-                : '-translate-y-[10px]'
+                ? '-translate-x-[4px] -translate-y-[4px] rotate-45'
+                : '-translate-x-[10px] -translate-y-[5px] rotate-[113.5deg]'
             }`}
           ></div>
         </button>
@@ -82,7 +80,7 @@ const Navbar = () => {
               </a>
             </div>
             <span
-              className={`before: before:text-white/80 ${list.pseudoBeforeClassName}`}
+              className={`before: before:text-white/50 ${list.pseudoBeforeClassName}`}
             ></span>
           </li>
         ))}

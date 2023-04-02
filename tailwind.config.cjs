@@ -9,7 +9,7 @@ module.exports = {
         breath: {
           '0%, 100%': { transform: 'translate(0px,0px)' },
           '50%': {
-            transform: 'translate(10px,-30px) scaleX(1.1)',
+            transform: 'translate(10px,-30px) scaleX(1.2)',
           },
         },
       },
