@@ -70,11 +70,11 @@ const MARQUEE_ELEMENTS_CONFIG: element[] = [
   },
   {
     imgSrc: SupabaseIcon,
-    name: 'supabase',
+    name: 'Supabase',
   },
   {
     imgSrc: FlaskIcon,
-    name: 'flask',
+    name: 'Flask',
     aspectRatioClassName: 'aspect-[4/5]',
   },
 ]
@@ -83,13 +83,17 @@ const SingleLogoElement = ({
   imgSrc,
   name,
   aspectRatioClassName = 'aspect-square',
-}: element) => {
+  rotate,
+}: element & { rotate: 45 | 0 }) => {
+  const rotateClassName = rotate === 0 ? '' : 'rotate-45'
   return (
-    <div className="group relative h-full p-10">
+    <div
+      className={`group relative flex h-full items-center p-10 ${rotateClassName}`}
+    >
       <img
         src={imgSrc}
         alt={name}
-        className={`h-full ${aspectRatioClassName} transition-all group-hover:blur-sm group-hover:grayscale`}
+        className={`h-[72%] ${aspectRatioClassName} transition-all group-hover:blur-sm group-hover:grayscale`}
       ></img>
       <p className="invisible absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-black text-white shadow-black text-shadow-outline group-hover:visible">
         {name}
@@ -98,16 +102,20 @@ const SingleLogoElement = ({
   )
 }
 
-const LogoMarquee = () => {
+const LogoMarquee = ({ rotate = 0 }: { rotate?: 45 | 0 }) => {
   return (
     <Marquee
       gradientColor={[246, 246, 246]}
-      className="h-[10rem]"
-      speed={80}
+      className="h-full"
+      speed={60}
       pauseOnHover
     >
       {MARQUEE_ELEMENTS_CONFIG.map((element) => (
-        <SingleLogoElement key={element.name} {...element}></SingleLogoElement>
+        <SingleLogoElement
+          key={element.name}
+          {...element}
+          rotate={rotate}
+        ></SingleLogoElement>
       ))}
     </Marquee>
   )
