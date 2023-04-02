@@ -1,12 +1,22 @@
 import { useState } from 'react'
 
 import PowerDropImage from '@/assets/powerdrop.png'
-import Logo from '@/assets/logo.png'
+import Logo from '@/assets/logo_white.png'
 
 const NAVBAR_CONFIG = [
   {
     name: 'home',
     pseudoBeforeClassName: "before:content-['home.']",
+    link: '#',
+  },
+  {
+    name: 'about',
+    pseudoBeforeClassName: "before:content-['about.']",
+    link: '#',
+  },
+  {
+    name: 'life',
+    pseudoBeforeClassName: "before:content-['life.']",
     link: '#',
   },
   {
@@ -29,7 +39,10 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 z-[999] h-screen w-screen overflow-hidden bg-[transparent]">
       <div className="relative z-20 flex h-[4rem] items-center px-10">
-        <img src={Logo} className="aspect-square h-[80%]" />
+        <div className="flex aspect-square h-[80%] cursor-pointer items-center justify-center rounded-full bg-brand-green/90 p-4 hover:animate-flash">
+          <img src={Logo} className="aspect-square h-full" />
+        </div>
+
         <h3
           className={`ml-auto mr-2 transition-all duration-500 ${
             isOpen && 'text-white'

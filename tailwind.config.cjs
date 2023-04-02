@@ -7,14 +7,29 @@ module.exports = {
     extend: {
       keyframes: {
         breath: {
-          '0%, 100%': { transform: 'translate(0px,0px)' },
+          '0%, 100%': { transform: 'translate(0px,0px) scaleX(0.9)' },
           '50%': {
             transform: 'translate(10px,-30px) scaleX(1.2)',
           },
         },
+        flash: {
+          '0%': {
+            filter: 'hue-rotate(0deg)',
+            transform: 'rotate(0deg) scale(1)',
+          },
+          '50%': {
+            filter: 'hue-rotate(180deg)',
+            transform: 'rotate(180deg) scale(1.5,1)',
+          },
+          '100%': {
+            filter: 'hue-rotate(360deg)',
+            transform: 'rotate(360deg) scale(1)',
+          },
+        },
       },
       animation: {
-        breath: 'breath 10s ease-in-out infinite',
+        breath: '10s ease-in-out infinite breath',
+        flash: '1.5s ease flash ',
       },
       fontFamily: {
         cursive: ['Bowlby One', 'cursive'],

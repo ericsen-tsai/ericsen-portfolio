@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import anime from 'animejs/lib/anime.es.js'
 
 const ShapeMorph = ({
@@ -8,9 +8,23 @@ const ShapeMorph = ({
   shortSideSize?: number
   ratio?: number
 }) => {
+  const morphId = useRef<string>(
+    `id-${Math.floor(Math.random() * 100).toString()}`
+  )
+
+  const gradientId = useRef<string>(
+    `id-${Math.floor(Math.random() * 100).toString()}`
+  )
+  const stopPointOneId = useRef<string>(
+    `id-${Math.floor(Math.random() * 100).toString()}`
+  )
+  const stopPointTwoId = useRef<string>(
+    `id-${Math.floor(Math.random() * 100).toString()}`
+  )
+
   useEffect(() => {
     anime({
-      targets: '#sw-js-blob-svg path',
+      targets: `#${morphId.current} path`,
       d: [
         {
           value:
@@ -34,34 +48,34 @@ const ShapeMorph = ({
 
   return (
     <svg
-      id="sw-js-blob-svg"
+      id={morphId.current}
       viewBox="0 0 100 100"
       xmlns="http://www.w3.org/2000/svg"
       width={(shortSideSize * ratio).toString()}
       height={shortSideSize.toString()}
     >
       <defs>
-        <linearGradient id="sw-gradient" x1="0" x2="1" y1="1" y2="0">
+        <linearGradient id={gradientId.current} x1="0" x2="1" y1="1" y2="0">
           <stop
-            id="stop1"
+            id={stopPointOneId.current}
             stopColor="rgba(119.161, 190.04, 182.165, 1)"
             offset="0%"
           ></stop>
           <stop
-            id="stop2"
+            id={stopPointTwoId.current}
             stopColor="rgba(27, 153, 139, 1)"
             offset="100%"
           ></stop>
         </linearGradient>
       </defs>
       <path
-        fill="url(#sw-gradient)"
+        fill={`url(#${gradientId.current})`}
         d="M22.1,-38.1C28.7,-34.5,34.1,-28.7,38,-21.9C42,-15.2,44.4,-7.6,44,-0.3C43.5,7,40,14.1,35.9,20.5C31.8,27,27.1,32.9,21,35.9C14.9,38.9,7.5,39,0,39C-7.5,39,-14.9,38.9,-21.3,36.1C-27.7,33.2,-33,27.7,-37.1,21.2C-41.3,14.8,-44.2,7.4,-43.6,0.3C-43,-6.7,-39,-13.4,-35.2,-20.6C-31.5,-27.7,-28.1,-35.2,-22.3,-39.3C-16.4,-43.4,-8.2,-44,-0.2,-43.6C7.8,-43.2,15.5,-41.8,22.1,-38.1Z"
         width="100%"
         height="100%"
         transform={`translate(50 50) scale(${ratio} 1)`}
         strokeWidth="0"
-        stroke="url(#sw-gradient)"
+        stroke={`url(#${gradientId.current})`}
       ></path>
     </svg>
   )
