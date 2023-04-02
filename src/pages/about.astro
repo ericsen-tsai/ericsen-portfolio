@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro'
+import ReactIcon from '@/assets/react-icon.png'
+import NextIcon from '@/assets/next-icon.png'
+import MuiIcon from '@/assets/mui-icon.png'
+import ReactQueryIcon from '@/assets/react-query-icon.png'
+import ReduxIcon from '@/assets/reduxicon.png'
+import TailwindCssIcon from '@/assets/tailwind-css-icon.png'
+---
+
+<Layout title="ET's studio">
+  <main class="relative flex h-screen flex-col justify-center px-[20rem]">
+    <!-- <p class="absolute top-1/2 right-0">
+      One meme a day, keep my bad mood away.
+    </p> -->
+    <h3 class="mb-10 text-2xl font-bold">Get to know me!</h3>
+    <div class="flex">
+      <p class="flex-1 text-xl">
+        I'm a skilled Frontend Developer with a master's degree in biomedical
+        engineering, experienced in creating intuitive interfaces and various
+        applications, including healthcare systems, facebook fanpage management
+        platform and more.
+        <br />
+        I'm proficient in <span class="inline-block">
+          <img
+            src={ReactIcon}
+            alt="react-icon"
+            class="inline-block aspect-[6/5] h-[1rem] translate-y-[-3px]"
+          />
+          React.js
+        </span> & <span class="inline-block">
+          <img
+            src={NextIcon}
+            alt="next-icon"
+            class="inline-block aspect-square h-[1rem] translate-y-[-3px]"
+          />
+          Next.js
+        </span>, and also have strong background in software development,
+        quality assurance, and project management.
+        <br />
+        I believe I'm a quick learner, team player, and excellent communicator, who
+        passionate about crafting elegant, functional designs to improve user experience.
+      </p>
+    </div>
+  </main>
+</Layout>
+
+<style></style>

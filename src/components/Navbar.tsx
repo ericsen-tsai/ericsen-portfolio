@@ -7,12 +7,12 @@ const NAVBAR_CONFIG = [
   {
     name: 'home',
     pseudoBeforeClassName: "before:content-['home.']",
-    link: '#',
+    link: '/',
   },
   {
     name: 'about',
     pseudoBeforeClassName: "before:content-['about.']",
-    link: '#',
+    link: '/about',
   },
   {
     name: 'life',
@@ -87,6 +87,7 @@ const Navbar = () => {
               <a
                 className="absolute h-[60px] translate-x-[30rem] overflow-hidden text-white  transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px]"
                 href={list.link}
+                onClick={() => setIsOpen(false)}
               >
                 {list.name}
                 <span className="text-brand-green">.</span>
@@ -94,6 +95,7 @@ const Navbar = () => {
             </div>
             <span
               className={`before: before:text-white/50 ${list.pseudoBeforeClassName}`}
+              onClick={() => setIsOpen(false)}
             ></span>
           </li>
         ))}
