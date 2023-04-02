@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import PowerDropImage from '@/assets/powerdrop.png'
 import Logo from '@/assets/logo_white.png'
@@ -33,11 +33,31 @@ const NAVBAR_CONFIG = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isOnTop, setIsOnTop] = useState<boolean>(window.scrollY === 0)
 
   const handleToggle = () => setIsOpen((prev) => !prev)
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY === 0) {
+        setIsOnTop(true)
+        return
+      }
+      if (isOnTop) {
+        setIsOnTop(false)
+      }
+    }
+    document.addEventListener('scroll', handleScroll)
+
+    return () => document.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <nav className="fixed top-0 z-[999] h-[4rem] w-screen bg-[transparent]">
+    <nav
+      className={`fixed top-0 z-[999] h-[4rem] w-screen transition-all ${
+        isOnTop ? 'bg-[transparent]' : 'bg-black/10 backdrop-blur-md'
+      }`}
+    >
       <div className="relative z-20 flex h-[4rem] items-center px-10">
         <div className="flex aspect-square h-[80%] cursor-pointer items-center justify-center rounded-full bg-brand-green/90 p-3 hover:animate-flash">
           <img src={Logo} className="aspect-square h-full" />

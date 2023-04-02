@@ -107,7 +107,7 @@ const LogoMarquee = ({ rotate = 0 }: { rotate?: 45 | 0 }) => {
     <Marquee
       gradientColor={[246, 246, 246]}
       className="h-full"
-      speed={60}
+      speed={40}
       pauseOnHover
     >
       {MARQUEE_ELEMENTS_CONFIG.map((element) => (
