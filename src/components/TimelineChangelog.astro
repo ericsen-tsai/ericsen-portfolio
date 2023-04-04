@@ -17,6 +17,7 @@ const { entries } = Astro.props
             ? `${entry.space || 0}px`
             : entry.space
         }`
+        const DescriptionElement = entry.DescriptionElement
         return (
           <li
             class={`relative h-[var(--entry-height)] w-full md:w-1/2
@@ -71,6 +72,16 @@ const { entries } = Astro.props
                 data-in-view
               >
                 {entry.description}
+              </span>
+            )}
+            {DescriptionElement && (
+              <span
+                class={`${
+                  entry.type === 'life' ? 'ml-16 md:mr-16 md:ml-0' : 'ml-16'
+                } block translate-y-5 text-lg opacity-0`}
+                data-in-view
+              >
+                <DescriptionElement />
               </span>
             )}
           </li>
