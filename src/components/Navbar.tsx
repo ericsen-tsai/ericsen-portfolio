@@ -21,7 +21,7 @@ const NAVBAR_CONFIG = [
   {
     name: 'changelog',
     pseudoBeforeClassName: "before:content-['changelog.']",
-    link: '#',
+    link: '/changelog',
   },
   {
     name: 'works',
@@ -53,11 +53,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 z-[999] h-[4rem] w-screen transition-all ${
+      className={`fixed top-0 z-[999] h-[var(--navbar-height)] w-screen transition-all ${
         isOnTop ? 'bg-[transparent]' : 'bg-black/10 backdrop-blur-md'
       }`}
     >
-      <div className="relative z-20 flex h-[4rem] items-center px-10">
+      <div className="relative z-20 flex h-[var(--navbar-height)] items-center px-10">
         <div className="flex aspect-square h-[60%] cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-brand-green to-brand-yellow p-2 hover:animate-flash">
           <img src={Logo} className="aspect-square h-full" />
         </div>
@@ -112,10 +112,11 @@ const Navbar = () => {
                 <span className="text-brand-green">.</span>
               </a>
             </div>
-            <span
+            <a
               className={`before: before:text-white/50 ${list.pseudoBeforeClassName}`}
+              href={list.link}
               onClick={() => setIsOpen(false)}
-            ></span>
+            ></a>
           </li>
         ))}
       </ul>

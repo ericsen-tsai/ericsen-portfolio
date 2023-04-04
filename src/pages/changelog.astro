@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro'
+import TimelineChangelog from '../components/TimelineChangelog.astro'
+import type { changelogEntry } from '@/types/changelogEntry'
+
+const changelogEntries: changelogEntry[] = [
+  {
+    date: '2023-03-01',
+    description: 'Launched new project feature X',
+    type: 'life',
+  },
+  {
+    date: '2023-02-15',
+    description: 'Fixed issue Y in project Z',
+    type: 'tech',
+  },
+  {
+    date: '2023-03-01',
+    description: 'Launched new project feature X',
+    type: 'life',
+  },
+  {
+    date: '2023-02-15',
+    description: 'Fixed issue Y in project Z',
+  },
+  {
+    date: '2023-03-01',
+    description: 'Launched new project feature X',
+  },
+  {
+    date: '2023-02-15',
+    description: 'Fixed issue Y in project Z',
+  },
+  {
+    date: '2023-03-01',
+    description: 'Launched new project feature X',
+  },
+  {
+    date: '2023-02-15',
+    description: 'Fixed issue Y in project Z',
+  },
+  {
+    date: '2023-03-01',
+    description: 'Launched new project feature X',
+  },
+  {
+    date: '2023-02-15',
+    description: 'Fixed issue Y in project Z',
+  },
+  {
+    date: '2023-03-01',
+    description: 'Launched new project feature X',
+  },
+]
+---
+
+<Layout title="ET's studio">
+  <TimelineChangelog entries={changelogEntries} />
+</Layout>
+
+<style></style>
