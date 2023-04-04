@@ -1,5 +1,6 @@
 export type changelogEntry = {
   date: string
-  description: string
+  description?: string
   type?: 'life' | 'tech'
+  space?: string | number
 }

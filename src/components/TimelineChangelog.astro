@@ -8,46 +8,74 @@ const { entries } = Astro.props
 
 <div class="timeline-changelog flex justify-center">
   <ul
-    class="relative mt-[calc(var(--navbar-height)+2rem)] flex w-[80%] max-w-[30rem] list-none flex-col items-center p-0"
+    class="relative mt-[calc(var(--navbar-height)+var(--entry-height))] flex w-[95%] max-w-[50rem] list-none flex-col items-center p-0"
   >
     {
-      entries.map((entry) => (
-        <li
-          class={`relative h-[var(--entry-height)] w-full md:w-1/2 ${
-            entry.type === 'life'
-              ? 'self-end md:self-start md:text-right'
-              : 'self-end'
-          }`}
-        >
-          <span
-            class={`absolute ${
+      entries.map((entry) => {
+        const spaceBottom = `${
+          typeof entry.space === 'number'
+            ? `${entry.space || 0}px`
+            : entry.space
+        }`
+        return (
+          <li
+            class={`relative h-[var(--entry-height)] w-full md:w-1/2
+            ${
               entry.type === 'life'
-                ? 'left-0 -translate-x-1/2 md:right-0 md:left-auto md:translate-x-1/2'
-                : 'left-0 -translate-x-1/2'
-            } bg-brand-green before:bg-brand-green after:bg-brand-green h-[var(--timeline-dot-size)] w-[var(--timeline-dot-size)] rounded-full before:absolute before:left-1/2 before:top-0 before:h-[var(--entry-height)] before:w-[var(--timeline-line-width)] before:-translate-x-1/2 before:content-[''] after:absolute after:top-1/2 ${
-              entry.type === 'life'
-                ? 'after:left-0 md:after:right-0 md:after:left-auto'
-                : 'after:left-0'
-            } after:h-[var(--timeline-line-width)] after:w-12 after:-translate-y-1/2 after:content-['']`}
-          />
-          <span
-            class={`${
-              entry.type === 'life' ? 'ml-16 md:mr-16 md:ml-0' : 'ml-16'
-            } inline-block translate-y-5 font-bold opacity-0`}
-            data-in-view
+                ? 'self-end md:self-start md:text-right'
+                : 'self-end'
+            }
+            `}
+            style={{
+              marginBottom: spaceBottom,
+            }}
           >
-            {entry.date}
-          </span>
-          <span
-            class={`${
-              entry.type === 'life' ? 'ml-16 md:mr-16 md:ml-0' : 'ml-16'
-            } block translate-y-5 opacity-0`}
-            data-in-view
-          >
-            {entry.description}
-          </span>
-        </li>
-      ))
+            <div
+              class={`bg-brand-green absolute top-0 w-[var(--timeline-line-width)] ${
+                entry.type === 'life'
+                  ? 'left-0 -translate-x-1/2 md:right-0 md:left-auto md:translate-x-1/2'
+                  : 'left-0 -translate-x-1/2'
+              }`}
+              style={{
+                height: spaceBottom,
+              }}
+            />
+            <span
+              class={`absolute ${
+                entry.type === 'life'
+                  ? 'left-0 -translate-x-1/2 md:right-0 md:left-auto md:translate-x-1/2'
+                  : 'left-0 -translate-x-1/2'
+              } bg-brand-green before:bg-brand-green after:bg-brand-green h-[var(--timeline-dot-size)] w-[var(--timeline-dot-size)] rounded-full before:absolute before:left-1/2 before:top-[calc(-1*var(--entry-height))] before:h-[var(--entry-height)] before:w-[var(--timeline-line-width)] before:-translate-x-1/2 before:content-[''] after:absolute after:top-1/2 ${
+                entry.type === 'life'
+                  ? 'after:left-0 md:after:right-0 md:after:left-auto'
+                  : 'after:left-0'
+              } after:h-[var(--timeline-line-width)] after:w-12 after:-translate-y-1/2 after:content-['']`}
+            />
+            <span
+              class={`${
+                entry.type === 'life' ? 'ml-16 md:mr-16 md:ml-0' : 'ml-16'
+              } inline-block translate-y-5 font-black opacity-0 ${
+                entry.description
+                  ? 'text-brand-orange text-base'
+                  : 'text-brand-green text-2xl'
+              }`}
+              data-in-view
+            >
+              {entry.date}
+            </span>
+            {entry.description && (
+              <span
+                class={`${
+                  entry.type === 'life' ? 'ml-16 md:mr-16 md:ml-0' : 'ml-16'
+                } block translate-y-5 text-lg opacity-0`}
+                data-in-view
+              >
+                {entry.description}
+              </span>
+            )}
+          </li>
+        )
+      })
     }
   </ul>
 </div>
@@ -76,11 +104,11 @@ const { entries } = Astro.props
 </script>
 <style>
   .timeline-changelog {
-    --entry-height: 10rem;
+    --entry-height: 8rem;
     --timeline-line-width: 2px;
     --timeline-dot-size: 8px;
   }
   .timeline-in-view {
-    @apply translate-y-0 opacity-100 transition-all duration-1000;
+    @apply translate-y-[calc(var(--entry-height)*(-0.1))] opacity-100 transition-all duration-1000;
   }
 </style>
