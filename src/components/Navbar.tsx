@@ -102,9 +102,9 @@ const Navbar = () => {
       >
         {NAVBAR_CONFIG.map((list) => (
           <li className="group relative cursor-pointer" key={list.name}>
-            <div className="absolute h-[60px] w-[30rem] translate-x-[-30rem] overflow-hidden transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px]">
+            <div className="absolute h-[60px] w-[20rem] translate-x-[-20rem] overflow-hidden transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px] md:w-[35rem] md:translate-x-[-35rem]">
               <a
-                className="absolute h-[60px] translate-x-[30rem] overflow-hidden text-white  transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px]"
+                className="absolute h-[60px] translate-x-[20rem] overflow-hidden text-white transition-all  duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px] md:translate-x-[35rem]"
                 href={list.link}
                 onClick={() => setIsOpen(false)}
               >
@@ -113,7 +113,7 @@ const Navbar = () => {
               </a>
             </div>
             <a
-              className={`before: before:text-white/50 ${list.pseudoBeforeClassName}`}
+              className={`before:text-white/50 ${list.pseudoBeforeClassName}`}
               href={list.link}
               onClick={() => setIsOpen(false)}
             ></a>
