@@ -57,10 +57,13 @@ const Navbar = () => {
         isOnTop ? 'bg-[transparent]' : 'bg-black/10 backdrop-blur-md'
       }`}
     >
-      <div className="relative z-20 flex h-[var(--navbar-height)] items-center px-10">
-        <div className="flex aspect-square h-[60%] cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-brand-green to-brand-yellow p-2 hover:animate-flash">
+      <div className="relative z-20 flex h-[var(--navbar-height)] items-center pr-6 pl-6 md:px-10">
+        <a
+          className="flex aspect-square h-[60%] cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-brand-green to-brand-yellow p-2 hover:animate-flash"
+          href="/"
+        >
           <img src={Logo} className="aspect-square h-full" />
-        </div>
+        </a>
 
         <h3
           className={`ml-auto mr-2 transition-all duration-500 ${
@@ -98,7 +101,7 @@ const Navbar = () => {
           isOpen
             ? 'h-screen overflow-y-hidden opacity-100'
             : 'h-0 -translate-y-[100vh] opacity-0'
-        } absolute left-0 top-0 z-10 flex w-screen flex-col items-start justify-center gap-5 overflow-hidden bg-black/80 px-5 font-sans text-5xl font-extrabold transition-all duration-500 md:text-8xl [&>li]:ml-3 [&>li]:origin-left [&>li]:scale-x-[1.3] md:[&>li]:ml-[30vw]`}
+        } absolute left-0 top-0 z-10 flex w-screen flex-col items-start justify-center gap-5 overflow-hidden bg-black/80 px-5 font-sans text-4xl font-extrabold transition-all duration-500 xs:text-6xl md:text-8xl [&>li]:ml-3 [&>li]:origin-left [&>li]:scale-x-[1.3] md:[&>li]:ml-[min(30vw,10%)]`}
       >
         {NAVBAR_CONFIG.map((list) => (
           <li className="group relative cursor-pointer" key={list.name}>
