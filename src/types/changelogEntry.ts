@@ -4,6 +4,6 @@ export type changelogEntry = {
   date: string
   description?: string
   DescriptionElement?: FunctionComponent
-  type?: 'life' | 'tech'
+  type?: 'life' | 'tech' | 'academic' | 'work'
   space?: string | number
 }
