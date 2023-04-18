@@ -1,6 +1,16 @@
+import Select, { SingleValue } from 'react-select'
 import { useState, useEffect } from 'react'
-
 import Logo from '@/assets/logo_white.png'
+
+type Option = {
+  value: string
+  label: string
+}
+
+const options: Option[] = [
+  { value: 'en', label: 'English' },
+  { value: 'zh-TW', label: '中文正體' },
+]
 
 const NAVBAR_CONFIG = [
   {
@@ -33,6 +43,29 @@ const NAVBAR_CONFIG = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isOnTop, setIsOnTop] = useState<boolean>(window.scrollY === 0)
+  const initialLangVal = {
+    value:
+      options.find(
+        (option) => option.value === (document.documentElement.lang || 'en')
+      )?.value || options[0].value,
+    label:
+      options.find(
+        (option) => option.value === (document.documentElement.lang || 'en')
+      )?.label || options[0].label,
+  } as Option
+
+  const [selectedLang, setSelectedLang] = useState<Pick<
+    Option,
+    'value'
+  > | null>(initialLangVal)
+
+  const handleChange = (option: SingleValue<Pick<Option, 'value'>>) => {
+    setSelectedLang(option)
+    window.location.replace(
+      window.location.origin +
+        ((option?.value || 'en') === 'en' ? '/' : `/${option?.value}`)
+    ) + window.location.pathname.slice(1)
+  }
 
   const handleToggle = () => setIsOpen((prev) => !prev)
 
@@ -64,9 +97,15 @@ const Navbar = () => {
         >
           <img src={Logo} className="aspect-square h-full" />
         </a>
-
+        <Select
+          value={selectedLang}
+          defaultValue={initialLangVal}
+          onChange={(option) => handleChange(option)}
+          options={options}
+          className="ml-auto"
+        />
         <h3
-          className={`ml-auto mr-2 transition-all duration-500 ${
+          className={`ml-5 mr-2 transition-all duration-500 md:ml-10 ${
             isOpen && 'text-white'
           } scale-x-[1.2] font-light`}
         >
