@@ -5,6 +5,12 @@ import Swimming from '@/assets/changelog/swimming.png'
 import BachelorGraduation from '@/assets/changelog/bachelor_graduate.png'
 import GuineaPig from '@/assets/changelog/guinea_pig.png'
 import LeopardCatReservation from '@/assets/changelog/leopard_cat_reservation.png'
+import FreeDiving from '@/assets/changelog/free_diving.png'
+import ChildrenGrowth from '@/assets/changelog/children_growth.png'
+import RissoDolphin from '@/assets/changelog/risso_dolphin.png'
+import WhyYouChoosePigs from '@/assets/changelog/why_you_choose_guinea_pigs.png'
+import HowToTrainPigs from '@/assets/changelog/how_to_train_your_guinea_pig.png'
+import QueuingSystem from '@/assets/changelog/queuing_system.png'
 
 const changelogEntries: changelogEntry[] = [
   { date: '2023-04' },
@@ -63,8 +69,27 @@ const changelogEntries: changelogEntry[] = [
   { date: '2022-11' },
   {
     date: '2022-10',
-    description: 'Created a guinea pig introduction website using Astro',
     type: 'tech',
+    DescriptionElement: () => {
+      return (
+        <p>
+          Created a guinea pig introduction website using Astro
+          <img
+            src={HowToTrainPigs}
+            alt="how to train pigs"
+            className="mt-3 aspect-[8/5] h-[6rem] rounded-lg md:h-[8rem]"
+            loading="lazy"
+          ></img>
+          <img
+            src={WhyYouChoosePigs}
+            alt="why you choose pigs"
+            className="mt-3 aspect-[8/5] h-[6rem] rounded-lg md:h-[8rem]"
+            loading="lazy"
+          ></img>
+        </p>
+      )
+    },
+    space: 250,
   },
   {
     date: '2022-08',
@@ -101,11 +126,32 @@ const changelogEntries: changelogEntry[] = [
     description:
       'Developed a hospital queuing system using Python, Flask, SQLite, and jQuery',
     type: 'tech',
+    DescriptionElement: () => (
+      <img
+        src={QueuingSystem}
+        alt="queuing system"
+        className="mt-3 aspect-[2/1] h-[6rem] rounded-lg"
+        loading="lazy"
+      ></img>
+    ),
+    space: 150,
   },
   {
     date: '2021-08',
-    description: 'Started working at Lightning Tech Co., Ltd.',
     type: 'tech',
+    DescriptionElement: () => (
+      <p>
+        Started working at&nbsp;
+        <a
+          href={'https://lightningww.com/'}
+          target="_blank"
+          className="text-[#e0c112] underline"
+        >
+          Lightning Tech Co., Ltd.
+        </a>
+      </p>
+    ),
+    space: 30,
   },
   { date: '2021-07', description: 'Began job interviews', type: 'work' },
   { date: '2021-05', description: 'End working at YuDaCang', type: 'work' },
@@ -133,8 +179,19 @@ const changelogEntries: changelogEntry[] = [
   { date: '2021' },
   {
     date: '2020-07-14',
-    description: 'Started Working part-time as a QA engineer at YuDaCang',
     type: 'work',
+    DescriptionElement: () => (
+      <p>
+        Started Working part-time as a QA engineer at&nbsp;
+        <a
+          href={'https://www.yudacang.com/'}
+          target="_blank"
+          className="text-[#A92E2D] underline"
+        >
+          YuDaCang
+        </a>
+      </p>
+    ),
   },
   { date: '2020-07' },
   {
@@ -157,16 +214,43 @@ const changelogEntries: changelogEntry[] = [
     description:
       'Volunteered at Marine Biology & Cetacean Research Center, NCKU',
     type: 'life',
+    DescriptionElement: () => (
+      <img
+        src={RissoDolphin}
+        alt="Risso dolphin"
+        className="mt-3 aspect-[5/3] h-[6rem] rounded-lg md:ml-auto"
+        loading="lazy"
+      ></img>
+    ),
+    space: 80,
   },
   {
     date: '2020-07-10~14',
     description: "Volunteered at Children's Character Growth Camp",
     type: 'life',
+    DescriptionElement: () => (
+      <img
+        src={ChildrenGrowth}
+        alt="children character growth campus"
+        className="mt-3 aspect-[5/3] h-[6rem] rounded-lg md:ml-auto"
+        loading="lazy"
+      ></img>
+    ),
+    space: 80,
   },
   {
     date: '2020-06-30~07-02',
     description: 'First Free Diving',
     type: 'life',
+    DescriptionElement: () => (
+      <img
+        src={FreeDiving}
+        alt="first free diving"
+        className="mt-3 aspect-[5/3] h-[6rem] rounded-lg md:ml-auto"
+        loading="lazy"
+      ></img>
+    ),
+    space: 80,
   },
   {
     date: '2020-03-01',
