@@ -2,6 +2,8 @@ import Select, { SingleValue } from 'react-select'
 import { useState, useEffect } from 'react'
 import Logo from '@/assets/logo_white.png'
 
+type Language = 'zh-TW' | 'en'
+
 type Option = {
   value: string
   label: string
@@ -40,6 +42,28 @@ const NAVBAR_CONFIG = [
   },
 ]
 
+const goToLangRoute = (lang: Language) => {
+  if (lang === document.documentElement.lang) {
+    return
+  }
+  const segments = window.location.pathname.split('/')
+  if (lang === 'en') {
+    window.location.replace(
+      window.location.origin + '/' + segments.slice(2).join('/')
+    )
+    return
+  }
+  if (document.documentElement.lang === 'en') {
+    window.location.replace(
+      window.location.origin + `/${lang}/` + segments.slice(1).join('/')
+    )
+    return
+  }
+  window.location.replace(
+    window.location.origin + `/${lang}/` + segments.slice(2).join('/')
+  )
+}
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isOnTop, setIsOnTop] = useState<boolean>(window.scrollY === 0)
@@ -61,10 +85,7 @@ const Navbar = () => {
 
   const handleChange = (option: SingleValue<Pick<Option, 'value'>>) => {
     setSelectedLang(option)
-    window.location.replace(
-      window.location.origin +
-        ((option?.value || 'en') === 'en' ? '/' : `/${option?.value}`)
-    ) + window.location.pathname.slice(1)
+    goToLangRoute((option?.value || 'en') as Language)
   }
 
   const handleToggle = () => setIsOpen((prev) => !prev)
@@ -147,7 +168,11 @@ const Navbar = () => {
             <div className="absolute h-[60px] w-[20rem] translate-x-[-20rem] overflow-hidden transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px] md:w-[35rem] md:translate-x-[-35rem]">
               <a
                 className="absolute h-[60px] translate-x-[20rem] overflow-hidden text-white transition-all  duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px] md:translate-x-[35rem]"
-                href={list.link}
+                href={
+                  document.documentElement.lang === 'en'
+                    ? list.link
+                    : `/${document.documentElement.lang}${list.link}`
+                }
                 onClick={() => setIsOpen(false)}
               >
                 {list.name}
@@ -156,7 +181,11 @@ const Navbar = () => {
             </div>
             <a
               className={`before:text-white/50 ${list.pseudoBeforeClassName}`}
-              href={list.link}
+              href={
+                document.documentElement.lang === 'en'
+                  ? list.link
+                  : `/${document.documentElement.lang}${list.link}`
+              }
               onClick={() => setIsOpen(false)}
             ></a>
           </li>
