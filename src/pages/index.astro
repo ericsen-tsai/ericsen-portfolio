@@ -1,10 +1,10 @@
 ---
-import { t, changeLanguage } from "i18next";
-import { Trans } from "astro-i18next/components";
-import Layout from "../layouts/Layout.astro";
-import ShapeMorph from "../components/ShapeMorph";
+import { t, changeLanguage } from 'i18next'
+import { Trans } from 'astro-i18next/components'
+import Layout from '../layouts/Layout.astro'
+import ShapeMorph from '../components/ShapeMorph'
 
-changeLanguage("en");
+changeLanguage('en')
 ---
 
 <Layout title="ET's studio">
@@ -29,7 +29,7 @@ changeLanguage("en");
           >→ {t('home.aboutMeButtonText')}<div
             class="absolute bottom-0 left-0 h-[1px] w-0 animate-flash bg-brand-green transition-all group-hover:w-full"
           >
-          </div></a
+          </div>&nbsp;</a
         >
         <a class="group relative inline-block text-black" href="#"
           >→ {t('home.worksButtonText')}<div
