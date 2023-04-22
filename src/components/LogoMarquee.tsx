@@ -79,12 +79,12 @@ const MARQUEE_ELEMENTS_CONFIG: element[] = [
   },
 ]
 
-const SingleLogoElement = ({
+function SingleLogoElement({
   imgSrc,
   name,
   aspectRatioClassName = 'aspect-square',
   rotate,
-}: element & { rotate: 45 | 0 }) => {
+}: element & { rotate: 45 | 0 }) {
   const rotateClassName = rotate === 0 ? '' : 'rotate-45'
   return (
     <div
@@ -94,7 +94,7 @@ const SingleLogoElement = ({
         src={imgSrc}
         alt={name}
         className={`h-[72%] ${aspectRatioClassName} transition-all group-hover:blur-sm group-hover:grayscale`}
-      ></img>
+      />
       <p className="invisible absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-black text-white shadow-black text-shadow-outline group-hover:visible">
         {name}
       </p>
@@ -102,7 +102,7 @@ const SingleLogoElement = ({
   )
 }
 
-const LogoMarquee = ({ rotate = 0 }: { rotate?: 45 | 0 }) => {
+function LogoMarquee({ rotate = 0 }: { rotate?: 45 | 0 }) {
   return (
     <Marquee
       gradientColor={[246, 246, 246]}
@@ -115,7 +115,7 @@ const LogoMarquee = ({ rotate = 0 }: { rotate?: 45 | 0 }) => {
           key={element.name}
           {...element}
           rotate={rotate}
-        ></SingleLogoElement>
+        />
       ))}
     </Marquee>
   )

@@ -1,4 +1,4 @@
-import Select, { SingleValue, OptionProps } from 'react-select'
+import Select, { type SingleValue, type OptionProps } from 'react-select'
 import { useState, useEffect } from 'react'
 import Logo from '@/assets/logo_white.png'
 import type { Language } from '@/types/language'
@@ -47,28 +47,26 @@ type CustomOptionProps = OptionProps<Pick<Option, 'value'>, false>
 const CustomOption: React.FC<CustomOptionProps> = ({
   innerProps,
   children,
-}) => {
-  return (
-    <div
-      {...innerProps}
-      className="cursor-pointer bg-white p-2 text-xs text-gray-900 hover:bg-brand-green hover:text-white"
-    >
-      {children}
-    </div>
-  )
-}
+}) => (
+  <div
+    {...innerProps}
+    className="cursor-pointer bg-white p-2 text-xs text-gray-900 hover:bg-brand-green hover:text-white"
+  >
+    {children}
+  </div>
+)
 
-const Navbar = () => {
+function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isOnTop, setIsOnTop] = useState<boolean>(window.scrollY === 0)
   const initialLangVal = {
     value:
       options.find(
-        (option) => option.value === (document.documentElement.lang || 'en')
+        (option) => option.value === (document.documentElement.lang || 'en'),
       )?.value || options[0].value,
     label:
       options.find(
-        (option) => option.value === (document.documentElement.lang || 'en')
+        (option) => option.value === (document.documentElement.lang || 'en'),
       )?.label || options[0].label,
   } as Option
 
@@ -108,12 +106,10 @@ const Navbar = () => {
       <div className="relative z-20 flex h-[var(--navbar-height)] items-center pr-6 pl-6 md:px-10">
         <button
           className="flex aspect-square h-[60%] cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-brand-green to-brand-yellow p-2 hover:animate-flash"
-          onClick={() =>
-            goToLangRoute({
-              lang: document.documentElement.lang as Language,
-              targetPathName: '',
-            })
-          }
+          onClick={() => goToLangRoute({
+            lang: document.documentElement.lang as Language,
+            targetPathName: '',
+          })}
         >
           <img src={Logo} className="aspect-square h-full" />
         </button>
@@ -124,16 +120,15 @@ const Navbar = () => {
           options={options}
           className="ml-auto"
           classNames={{
-            control: (state) =>
-              state.isFocused
-                ? '!border-brand-green !shadow-md !text-xs'
-                : '!text-xs',
+            control: (state) => (state.isFocused
+              ? '!border-brand-green !shadow-md !text-xs'
+              : '!text-xs'),
           }}
           components={{ Option: CustomOption }}
         />
         <h3
           className={`ml-5 mr-2 transition-all duration-500 md:ml-10 ${
-            isOpen && 'text-white'
+            isOpen ? 'text-white' : ''
           } scale-x-[1.2] font-light`}
         >
           menu
@@ -151,14 +146,14 @@ const Navbar = () => {
                 ? 'h-[5px] w-[40px] -translate-x-[4px] translate-y-[5px] -rotate-45'
                 : 'h-[3px] w-[25px] rotate-[113.5deg]'
             }`}
-          ></div>
+          />
           <div
             className={`m-[3px] transition-all duration-500 ${
               isOpen
                 ? 'h-[5px] w-[40px] -translate-x-[4px] -translate-y-[4px] rotate-45'
                 : 'h-[3px] w-[25px] -translate-x-[10px] -translate-y-[5px] rotate-[113.5deg]'
             }`}
-          ></div>
+          />
         </button>
       </div>
 
@@ -197,7 +192,7 @@ const Navbar = () => {
                   targetPathName: list.link,
                 })
               }}
-            ></a>
+            />
           </li>
         ))}
       </ul>

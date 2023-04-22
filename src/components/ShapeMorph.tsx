@@ -1,25 +1,25 @@
 import { useEffect, useRef } from 'react'
 import anime from 'animejs/lib/anime.es.js'
 
-const ShapeMorph = ({
+function ShapeMorph({
   shortSideSize = 500,
   ratio = 2,
 }: {
   shortSideSize?: number
   ratio?: number
-}) => {
+}) {
   const morphId = useRef<string>(
-    `id-${Math.floor(Math.random() * 100).toString()}`
+    `id-${Math.floor(Math.random() * 100).toString()}`,
   )
 
   const gradientId = useRef<string>(
-    `id-${Math.floor(Math.random() * 100).toString()}`
+    `id-${Math.floor(Math.random() * 100).toString()}`,
   )
   const stopPointOneId = useRef<string>(
-    `id-${Math.floor(Math.random() * 100).toString()}`
+    `id-${Math.floor(Math.random() * 100).toString()}`,
   )
   const stopPointTwoId = useRef<string>(
-    `id-${Math.floor(Math.random() * 100).toString()}`
+    `id-${Math.floor(Math.random() * 100).toString()}`,
   )
 
   useEffect(() => {
@@ -60,12 +60,12 @@ const ShapeMorph = ({
             id={stopPointOneId.current}
             stopColor="rgba(119.161, 190.04, 182.165, 1)"
             offset="0%"
-          ></stop>
+          />
           <stop
             id={stopPointTwoId.current}
             stopColor="rgba(27, 153, 139, 1)"
             offset="100%"
-          ></stop>
+          />
         </linearGradient>
       </defs>
       <path
@@ -76,7 +76,7 @@ const ShapeMorph = ({
         transform={`translate(50 50) scale(${ratio} 1)`}
         strokeWidth="0"
         stroke={`url(#${gradientId.current})`}
-      ></path>
+      />
     </svg>
   )
 }
