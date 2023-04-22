@@ -1,4 +1,4 @@
-import Select, { SingleValue } from 'react-select'
+import Select, { SingleValue, OptionProps } from 'react-select'
 import { useState, useEffect } from 'react'
 import Logo from '@/assets/logo_white.png'
 
@@ -41,6 +41,22 @@ const NAVBAR_CONFIG = [
     link: '#',
   },
 ]
+
+type CustomOptionProps = OptionProps<Pick<Option, 'value'>, false>
+
+const CustomOption: React.FC<CustomOptionProps> = ({
+  innerProps,
+  children,
+}) => {
+  return (
+    <div
+      {...innerProps}
+      className="cursor-pointer bg-white p-2 text-xs text-gray-900 hover:bg-brand-green hover:text-white"
+    >
+      {children}
+    </div>
+  )
+}
 
 const goToLangRoute = (lang: Language) => {
   if (lang === document.documentElement.lang) {
@@ -124,6 +140,13 @@ const Navbar = () => {
           onChange={(option) => handleChange(option)}
           options={options}
           className="ml-auto"
+          classNames={{
+            control: (state) =>
+              state.isFocused
+                ? '!border-brand-green !shadow-md !text-xs'
+                : '!text-xs',
+          }}
+          components={{ Option: CustomOption }}
         />
         <h3
           className={`ml-5 mr-2 transition-all duration-500 md:ml-10 ${
@@ -147,7 +170,7 @@ const Navbar = () => {
             }`}
           ></div>
           <div
-            className={`m-[3px] w-[40px] transition-all duration-500 ${
+            className={`m-[3px] transition-all duration-500 ${
               isOpen
                 ? 'h-[5px] w-[40px] -translate-x-[4px] -translate-y-[4px] rotate-45'
                 : 'h-[3px] w-[25px] -translate-x-[10px] -translate-y-[5px] rotate-[113.5deg]'
