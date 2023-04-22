@@ -4,5 +4,11 @@
     "introContent": "一位努力的<0>web開發者</0>，<1>致力於打造使用者友善的web applications<2>並提供創新且專業的解決方案的！",
     "aboutMeButtonText": "關於我",
     "worksButtonText": "近期作品"
+  },
+  "about": {
+    "title": "讓我來介紹一下自己！",
+    "firstParagraph": "我是一位技術嫻熟的前端開發者，擁有生物醫學工程碩士學位，並在開發直觀界面和各種應用程式方面具有豐富經驗，包括醫療系統、Facebook粉絲頁管理平台等。",
+    "secondParagraph": "我精通<0><1>React.js</0> & <2><3>Next.js</2>，並在軟體開發（software development）、品質管理（quality assurance）和專案管理（project management）方面擁有堅實的背景知識。",
+    "thirdParagraph": "我相信自己是一位學習能力強、團隊合作者和出色的溝通者，熱衷於設計優雅、實用的解決方案，以提升用戶體驗。"
   }
 }

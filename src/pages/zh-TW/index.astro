@@ -25,17 +25,18 @@ changeLanguage("zh-TW");
         </Trans>
       </p>
       <div class="mt-5 flex flex-col md:mt-10 md:flex-row md:gap-3">
-        <a class="group relative inline-block text-black" href="/about"
-          >→ {t('home.aboutMeButtonText')}<div
+        <button class="group relative inline-block text-black" id="go-to-about"
+          >→ {t('home.aboutMeButtonText')}
+          <div
             class="absolute bottom-0 left-0 h-[1px] w-0 animate-flash bg-brand-green transition-all group-hover:w-full"
           >
-          </div>&nbsp;</a
-        >
-        <a class="group relative inline-block text-black" href="#"
-          >→ {t('home.worksButtonText')}<div
+          </div>&nbsp;
+        </button>
+        <button class="group relative inline-block text-black" id="go-to-works">
+          → {t('home.worksButtonText')}<div
             class="absolute bottom-0 left-0 h-[1px] w-0 animate-flash bg-brand-green transition-all group-hover:w-full"
           >
-          </div></a
+          </div></button
         >
       </div>
     </div>
@@ -54,5 +55,28 @@ changeLanguage("zh-TW");
     </div>
   </main>
 </Layout>
+
+<script>
+  import goToLangRoute from '@/utils/goToLangRoute'
+  import type { Language } from '@/types/language'
+
+  const goToAboutButton = document.querySelector(
+    '#go-to-about'
+  ) as HTMLButtonElement
+  const goToWorks = document.querySelector('#go-to-works') as HTMLButtonElement
+
+  goToAboutButton.addEventListener('click', () => {
+    goToLangRoute({
+      lang: document.documentElement.lang as Language,
+      targetPathName: 'about',
+    })
+  })
+  goToWorks.addEventListener('click', () => {
+    goToLangRoute({
+      lang: document.documentElement.lang as Language,
+      targetPathName: '#',
+    })
+  })
+</script>
 
 <style></style>
