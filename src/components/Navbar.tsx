@@ -172,8 +172,9 @@ const Navbar = () => {
         {NAVBAR_CONFIG.map((list) => (
           <li className="group relative cursor-pointer" key={list.name}>
             <div className="absolute h-[60px] w-[20rem] translate-x-[-20rem] overflow-hidden transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px] md:w-[35rem] md:translate-x-[-35rem]">
-              <button
-                className="absolute h-[60px] translate-x-[20rem] overflow-hidden text-white transition-all  duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px] md:translate-x-[35rem]"
+              <a
+                role="button"
+                className="absolute block h-[60px] translate-x-[20rem] overflow-hidden text-white  transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px] md:translate-x-[35rem]"
                 onClick={() => {
                   setIsOpen(false)
                   goToLangRoute({
@@ -184,10 +185,11 @@ const Navbar = () => {
               >
                 {list.name}
                 <span className="text-brand-green">.</span>
-              </button>
+              </a>
             </div>
-            <button
-              className={`before:text-white/50 ${list.pseudoBeforeClassName}`}
+            <a
+              role="button"
+              className={`block before:text-white/50 ${list.pseudoBeforeClassName}`}
               onClick={() => {
                 setIsOpen(false)
                 goToLangRoute({
@@ -195,7 +197,7 @@ const Navbar = () => {
                   targetPathName: list.link,
                 })
               }}
-            ></button>
+            ></a>
           </li>
         ))}
       </ul>
