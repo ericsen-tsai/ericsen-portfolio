@@ -22,8 +22,7 @@ const config = {
       },
       rules: {
         quotes: [2, 'single', { avoidEscape: true }],
-        semi: 'off',
-        '@typescript-eslint/semi': ['error', 'never'],
+        'astro/semi': ['error', 'never'],
       },
     },
   ],
@@ -58,6 +57,7 @@ const config = {
     'react/jsx-filename-extension': 'off',
     'react/prop-types': 0,
     quotes: [2, 'single', { avoidEscape: true }],
+    '@typescript-eslint/no-var-requires': 0,
   },
   settings: {
     'import/resolver': {

@@ -8,8 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "i18n:gen": "astro-i18next generate",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.astro --ignore-path .gitignore --fix src"
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.astro --ignore-path .gitignore --fix src",
+    "i18n:gen": "astro-i18next generate && yarn lint"
   },
   "dependencies": {
     "@astrojs/react": "^2.1.0",
