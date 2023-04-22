@@ -1,5 +1,6 @@
 ---
-import { changeLanguage } from "i18next";
+import { t, changeLanguage } from "i18next";
+import { Trans } from "astro-i18next/components";
 import Layout from "../../layouts/Layout.astro";
 import LogoMarquee from "@/components/LogoMarquee";
 import ReactIcon from "@/assets/react-icon.webp";
@@ -19,39 +20,36 @@ changeLanguage("zh-TW");
     <h3
       class="mb-10 pt-[calc(var(--navbar-height)+2rem)] text-center text-2xl font-bold md:pt-0 md:text-left"
     >
-      Get to know me!
+      {t('about.title')}
     </h3>
     <p class="w-full text-xs md:text-base">
       <p class="leading-6 md:w-[70%] md:min-w-[70vw]">
-        I'm a skilled Frontend Developer with a master's degree in biomedical
-        engineering, experienced in creating intuitive interfaces and various
-        applications, including healthcare systems, facebook fanpage management
-        platform and more.
+        {t('about.firstParagraph')}
       </p>
       <br />
       <p class="leading-6 md:w-[65%] md:min-w-[65vw]">
-        I'm proficient in <span class="inline-block">
-          <img
-            src={ReactIcon}
-            alt="react-icon"
-            class="inline-block aspect-square h-[1rem] translate-y-[-3px]"
-          />
-          React.js
-        </span> & <span class="inline-block">
-          <img
-            src={NextIcon}
-            alt="next-icon"
-            class="inline-block aspect-square h-[1rem] translate-y-[-3px]"
-          />
-          Next.js
-        </span>, and also have strong background in software development,
-        quality assurance, and project management.
+        <Trans i18nKey={'about.secondParagraph'}>
+          I'm proficient in <span class="inline-block">
+            <img
+              src={ReactIcon}
+              alt="react-icon"
+              class="inline-block aspect-square h-[1rem] translate-y-[-3px]"
+            />
+            React.js
+          </span> & <span class="inline-block">
+            <img
+              src={NextIcon}
+              alt="next-icon"
+              class="inline-block aspect-square h-[1rem] translate-y-[-3px]"
+            />
+            Next.js
+          </span>, and also have strong background in software development,
+          quality assurance, and project management.
+        </Trans>
       </p>
       <br />
       <p class="leading-6 md:w-[60%] md:min-w-[60vw]">
-        I believe I'm a quick learner, team player, and excellent communicator,
-        who passionate about crafting elegant, functional designs to improve
-        user experience.
+        {t('about.thirdParagraph')}
       </p>
     </p>
     <div
