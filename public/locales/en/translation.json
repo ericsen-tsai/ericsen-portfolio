@@ -4,5 +4,11 @@
     "introContent": "a dedicated <0>web developer</0><1>who creates user-friendly web applications<2>and deliver innovative solutions!",
     "aboutMeButtonText": "more about me",
     "worksButtonText": "recent works"
+  },
+  "about": {
+    "title": "Get to know me!",
+    "firstParagraph": "I'm a skilled Frontend Developer with a master's degree in biomedical engineering, experienced in creating intuitive interfaces and various applications, including healthcare systems, facebook fanpage management platform and more.",
+    "secondParagraph": "I'm proficient in <0><1>React.js</0> & <2><3>Next.js</2>, and also have strong background in software development, quality assurance, and project management.",
+    "thirdParagraph": "I believe I'm a quick learner, team player, and excellent communicator, who passionate about crafting elegant, functional designs to improve user experience."
   }
 }
