@@ -13,6 +13,11 @@ changeLanguage("en");
   <main
     class="relative flex w-full flex-col justify-center overflow-x-hidden px-[2rem] md:h-screen md:overflow-hidden md:px-[5rem] lg:pl-[10rem]"
   >
+    <div
+      class="absolute bottom-0 -right-1/4 hidden h-[10rem] w-full -rotate-45 md:inline-block"
+    >
+      <LogoMarquee client:only="react" rotate={45} />
+    </div>
     {/* meme show case */}
     <!-- <p class="absolute top-1/2 right-0">
       One meme a day, keep my bad mood away.
@@ -52,11 +57,6 @@ changeLanguage("en");
         {t('about.thirdParagraph')}
       </p>
     </p>
-    <div
-      class="absolute bottom-0 -right-1/4 hidden h-[10rem] w-full -rotate-45 md:inline-block"
-    >
-      <LogoMarquee client:only="react" rotate={45} />
-    </div>
     <div class="h-[10rem] md:hidden">
       <LogoMarquee client:only="react" />
     </div>

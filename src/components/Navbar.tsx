@@ -140,17 +140,17 @@ const Navbar = () => {
           onClick={handleToggle}
         >
           <div
-            className={`m-[3px] h-[5px] w-[40px] transition-all duration-500 ${
+            className={`m-[3px] transition-all duration-500 ${
               isOpen
-                ? '-translate-x-[4px] translate-y-[5px] -rotate-45'
-                : 'rotate-[113.5deg]'
+                ? 'h-[5px] w-[40px] -translate-x-[4px] translate-y-[5px] -rotate-45'
+                : 'h-[3px] w-[25px] rotate-[113.5deg]'
             }`}
           ></div>
           <div
-            className={`m-[3px] h-[5px] w-[40px] transition-all duration-500 ${
+            className={`m-[3px] w-[40px] transition-all duration-500 ${
               isOpen
-                ? '-translate-x-[4px] -translate-y-[4px] rotate-45'
-                : '-translate-x-[10px] -translate-y-[5px] rotate-[113.5deg]'
+                ? 'h-[5px] w-[40px] -translate-x-[4px] -translate-y-[4px] rotate-45'
+                : 'h-[3px] w-[25px] -translate-x-[10px] -translate-y-[5px] rotate-[113.5deg]'
             }`}
           ></div>
         </button>
