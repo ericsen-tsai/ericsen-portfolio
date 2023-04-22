@@ -1,8 +1,8 @@
 import Select, { SingleValue, OptionProps } from 'react-select'
 import { useState, useEffect } from 'react'
 import Logo from '@/assets/logo_white.png'
-
-type Language = 'zh-TW' | 'en'
+import type { Language } from '@/types/language'
+import goToLangRoute from '@/utils/goToLangRoute'
 
 type Option = {
   value: string
@@ -18,12 +18,12 @@ const NAVBAR_CONFIG = [
   {
     name: 'home',
     pseudoBeforeClassName: "before:content-['home.']",
-    link: '/',
+    link: '',
   },
   {
     name: 'about',
     pseudoBeforeClassName: "before:content-['about.']",
-    link: '/about',
+    link: 'about',
   },
   {
     name: 'life',
@@ -33,7 +33,7 @@ const NAVBAR_CONFIG = [
   {
     name: 'changelog',
     pseudoBeforeClassName: "before:content-['changelog.']",
-    link: '/changelog',
+    link: 'changelog',
   },
   {
     name: 'works',
@@ -58,28 +58,6 @@ const CustomOption: React.FC<CustomOptionProps> = ({
   )
 }
 
-const goToLangRoute = (lang: Language) => {
-  if (lang === document.documentElement.lang) {
-    return
-  }
-  const segments = window.location.pathname.split('/')
-  if (lang === 'en') {
-    window.location.replace(
-      window.location.origin + '/' + segments.slice(2).join('/')
-    )
-    return
-  }
-  if (document.documentElement.lang === 'en') {
-    window.location.replace(
-      window.location.origin + `/${lang}/` + segments.slice(1).join('/')
-    )
-    return
-  }
-  window.location.replace(
-    window.location.origin + `/${lang}/` + segments.slice(2).join('/')
-  )
-}
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isOnTop, setIsOnTop] = useState<boolean>(window.scrollY === 0)
@@ -101,7 +79,7 @@ const Navbar = () => {
 
   const handleChange = (option: SingleValue<Pick<Option, 'value'>>) => {
     setSelectedLang(option)
-    goToLangRoute((option?.value || 'en') as Language)
+    goToLangRoute({ lang: (option?.value || 'en') as Language })
   }
 
   const handleToggle = () => setIsOpen((prev) => !prev)
@@ -128,12 +106,17 @@ const Navbar = () => {
       }`}
     >
       <div className="relative z-20 flex h-[var(--navbar-height)] items-center pr-6 pl-6 md:px-10">
-        <a
+        <button
           className="flex aspect-square h-[60%] cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-brand-green to-brand-yellow p-2 hover:animate-flash"
-          href="/"
+          onClick={() =>
+            goToLangRoute({
+              lang: document.documentElement.lang as Language,
+              targetPathName: '',
+            })
+          }
         >
           <img src={Logo} className="aspect-square h-full" />
-        </a>
+        </button>
         <Select
           value={selectedLang}
           defaultValue={initialLangVal}
@@ -189,28 +172,30 @@ const Navbar = () => {
         {NAVBAR_CONFIG.map((list) => (
           <li className="group relative cursor-pointer" key={list.name}>
             <div className="absolute h-[60px] w-[20rem] translate-x-[-20rem] overflow-hidden transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px] md:w-[35rem] md:translate-x-[-35rem]">
-              <a
+              <button
                 className="absolute h-[60px] translate-x-[20rem] overflow-hidden text-white transition-all  duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px] md:translate-x-[35rem]"
-                href={
-                  document.documentElement.lang === 'en'
-                    ? list.link
-                    : `/${document.documentElement.lang}${list.link}`
-                }
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false)
+                  goToLangRoute({
+                    lang: document.documentElement.lang as Language,
+                    targetPathName: list.link,
+                  })
+                }}
               >
                 {list.name}
                 <span className="text-brand-green">.</span>
-              </a>
+              </button>
             </div>
-            <a
+            <button
               className={`before:text-white/50 ${list.pseudoBeforeClassName}`}
-              href={
-                document.documentElement.lang === 'en'
-                  ? list.link
-                  : `/${document.documentElement.lang}${list.link}`
-              }
-              onClick={() => setIsOpen(false)}
-            ></a>
+              onClick={() => {
+                setIsOpen(false)
+                goToLangRoute({
+                  lang: document.documentElement.lang as Language,
+                  targetPathName: list.link,
+                })
+              }}
+            ></button>
           </li>
         ))}
       </ul>
