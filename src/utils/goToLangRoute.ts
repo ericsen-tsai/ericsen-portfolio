@@ -1,4 +1,5 @@
 import type { Language } from '@/types/language'
+
 const goToLangRoute = ({
   lang,
   targetPathName,
@@ -9,15 +10,14 @@ const goToLangRoute = ({
   let pathName
   if (targetPathName === undefined) {
     const segments = window.location.pathname.split('/')
-    pathName =
-      document.documentElement.lang === 'en'
-        ? segments.slice(1).join('/')
-        : segments.slice(2).join('/')
+    pathName = document.documentElement.lang === 'en'
+      ? segments.slice(1).join('/')
+      : segments.slice(2).join('/')
   } else {
     pathName = targetPathName
   }
 
-  const origin = window.location.origin
+  const { origin } = window.location
 
   if (lang === 'en') {
     window.location.replace(`${origin}/${pathName}`)

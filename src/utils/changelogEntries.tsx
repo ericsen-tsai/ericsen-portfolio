@@ -19,18 +19,22 @@ const changelogEntries: changelogEntry[] = [
     DescriptionElement: () => (
       <div className="flex flex-col items-start md:items-end">
         <p className="inline-block">
-          Served as a beach cleanup <br></br>staff member with
+          Served as a beach cleanup
+          {' '}
+          <br />
+          staff member with
         </p>
         <a
           href="https://rethinktw.org"
           target="_blank"
           className="inline-block aspect-[24/5] h-[2.75rem]"
+          rel="noreferrer"
         >
           <img
             src="https://rethinktw.org/assets/images/logo2.png"
             alt="rethink"
             className="inline-block h-full w-full"
-          ></img>
+          />
         </a>
       </div>
     ),
@@ -48,18 +52,22 @@ const changelogEntries: changelogEntry[] = [
     DescriptionElement: () => (
       <div className="flex flex-col items-start md:items-end">
         <p className="inline-block">
-          Participated in a beach <br></br>cleanup with
+          Participated in a beach
+          {' '}
+          <br />
+          cleanup with
         </p>
         <a
           href="https://rethinktw.org"
           target="_blank"
           className="inline-block aspect-[24/5] h-[2.75rem]"
+          rel="noreferrer"
         >
           <img
             src="https://rethinktw.org/assets/images/logo2.png"
             alt="rethink"
             className="inline-block h-full w-full"
-          ></img>
+          />
         </a>
       </div>
     ),
@@ -70,25 +78,23 @@ const changelogEntries: changelogEntry[] = [
   {
     date: '2022-10',
     type: 'tech',
-    DescriptionElement: () => {
-      return (
-        <p>
-          Created a guinea pig introduction website using Astro
-          <img
-            src={HowToTrainPigs}
-            alt="how to train pigs"
-            className="mt-3 aspect-[8/5] h-[6rem] rounded-lg md:h-[8rem]"
-            loading="lazy"
-          ></img>
-          <img
-            src={WhyYouChoosePigs}
-            alt="why you choose pigs"
-            className="mt-3 aspect-[8/5] h-[6rem] rounded-lg md:h-[8rem]"
-            loading="lazy"
-          ></img>
-        </p>
-      )
-    },
+    DescriptionElement: () => (
+      <p>
+        Created a guinea pig introduction website using Astro
+        <img
+          src={HowToTrainPigs}
+          alt="how to train pigs"
+          className="mt-3 aspect-[8/5] h-[6rem] rounded-lg md:h-[8rem]"
+          loading="lazy"
+        />
+        <img
+          src={WhyYouChoosePigs}
+          alt="why you choose pigs"
+          className="mt-3 aspect-[8/5] h-[6rem] rounded-lg md:h-[8rem]"
+          loading="lazy"
+        />
+      </p>
+    ),
     space: 250,
   },
   {
@@ -132,7 +138,7 @@ const changelogEntries: changelogEntry[] = [
         alt="queuing system"
         className="mt-3 aspect-[2/1] h-[6rem] rounded-lg"
         loading="lazy"
-      ></img>
+      />
     ),
     space: 150,
   },
@@ -143,9 +149,10 @@ const changelogEntries: changelogEntry[] = [
       <p>
         Started working at&nbsp;
         <a
-          href={'https://lightningww.com/'}
+          href="https://lightningww.com/"
           target="_blank"
           className="text-[#e0c112] underline"
+          rel="noreferrer"
         >
           Lightning Tech Co., Ltd.
         </a>
@@ -184,9 +191,10 @@ const changelogEntries: changelogEntry[] = [
       <p>
         Started Working part-time as a QA engineer at&nbsp;
         <a
-          href={'https://www.yudacang.com/'}
+          href="https://www.yudacang.com/"
           target="_blank"
           className="text-[#A92E2D] underline"
+          rel="noreferrer"
         >
           YuDaCang
         </a>
@@ -199,11 +207,10 @@ const changelogEntries: changelogEntry[] = [
     type: 'academic',
     DescriptionElement: () => (
       <a
-        href={
-          'https://workstory.s3.amazonaws.com/assets/2758201/4658605201967232.pdf'
-        }
+        href="https://workstory.s3.amazonaws.com/assets/2758201/4658605201967232.pdf"
         target="_blank"
         className="text-[#102F7D] underline"
+        rel="noreferrer"
       >
         TOEFL score of 95
       </a>
@@ -220,7 +227,7 @@ const changelogEntries: changelogEntry[] = [
         alt="Risso dolphin"
         className="mt-3 aspect-[5/3] h-[6rem] rounded-lg md:ml-auto"
         loading="lazy"
-      ></img>
+      />
     ),
     space: 80,
   },
@@ -234,7 +241,7 @@ const changelogEntries: changelogEntry[] = [
         alt="children character growth campus"
         className="mt-3 aspect-[5/3] h-[6rem] rounded-lg md:ml-auto"
         loading="lazy"
-      ></img>
+      />
     ),
     space: 80,
   },
@@ -248,7 +255,7 @@ const changelogEntries: changelogEntry[] = [
         alt="first free diving"
         className="mt-3 aspect-[5/3] h-[6rem] rounded-lg md:ml-auto"
         loading="lazy"
-      ></img>
+      />
     ),
     space: 80,
   },
@@ -262,7 +269,7 @@ const changelogEntries: changelogEntry[] = [
         alt="leopard cat reservation"
         className="mt-3 aspect-[5/3] h-[6rem] rounded-lg md:ml-auto"
         loading="lazy"
-      ></img>
+      />
     ),
     space: 80,
   },
@@ -282,11 +289,11 @@ const changelogEntries: changelogEntry[] = [
     type: 'academic',
     DescriptionElement: () => (
       <img
-        src={'https://workstory.s3.amazonaws.com/assets/2758203/Picture1.jpg'}
+        src="https://workstory.s3.amazonaws.com/assets/2758203/Picture1.jpg"
         alt="biodesign award"
         className="mt-3 aspect-[2/1] h-[6rem] rounded-lg"
         loading="lazy"
-      ></img>
+      />
     ),
     space: 80,
   },
@@ -307,7 +314,7 @@ const changelogEntries: changelogEntry[] = [
         alt="guinea-pig"
         className="mt-3 aspect-[2/1] h-[6rem] rounded-lg md:ml-auto"
         loading="lazy"
-      ></img>
+      />
     ),
     space: 80,
   },
@@ -322,7 +329,7 @@ const changelogEntries: changelogEntry[] = [
         src={BachelorGraduation}
         alt="bachelor graduation"
         className="mt-3 aspect-[13/10] h-[6rem] rounded-lg md:ml-auto"
-      ></img>
+      />
     ),
     space: 80,
   },
@@ -334,9 +341,10 @@ const changelogEntries: changelogEntry[] = [
       <p>
         Completed Cupoy &nbsp;
         <a
-          href={'https://www.cupoy.com/marathon/ml100/intro'}
+          href="https://www.cupoy.com/marathon/ml100/intro"
           target="_blank"
           className="text-[#D33B33] underline"
+          rel="noreferrer"
         >
           100-day machine learning marathon challenge
         </a>
@@ -355,7 +363,7 @@ const changelogEntries: changelogEntry[] = [
           src={Swimming}
           alt="swimming"
           className="mt-3 aspect-[2/3] h-[6rem] rounded-lg md:ml-auto"
-        ></img>
+        />
       </div>
     ),
     space: 70,
@@ -375,7 +383,7 @@ const changelogEntries: changelogEntry[] = [
         src={PlayingFireStick}
         alt="firestick"
         className="mt-3 aspect-[7/5] h-[6rem] rounded-lg md:ml-auto"
-      ></img>
+      />
     ),
     type: 'life',
     space: 80,
@@ -387,11 +395,13 @@ const changelogEntries: changelogEntry[] = [
     space: 80,
     DescriptionElement: () => (
       <p>
-        Started studying for bachelor's degree at{' '}
+        Started studying for bachelor's degree at
+        {' '}
         <a
-          href={'https://bme.ncku.edu.tw/?Lang=en'}
+          href="https://bme.ncku.edu.tw/?Lang=en"
           target="_blank"
           className="text-[#912B37] underline"
+          rel="noreferrer"
         >
           BME Department, NCKU
         </a>
