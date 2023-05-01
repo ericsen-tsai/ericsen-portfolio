@@ -104,18 +104,9 @@ function SingleLogoElement({
 
 function LogoMarquee({ rotate = 0 }: { rotate?: 45 | 0 }) {
   return (
-    <Marquee
-      gradientColor={[246, 246, 246]}
-      className="h-full"
-      speed={40}
-      pauseOnHover
-    >
+    <Marquee gradient={false} className="h-full" speed={40} pauseOnHover>
       {MARQUEE_ELEMENTS_CONFIG.map((element) => (
-        <SingleLogoElement
-          key={element.name}
-          {...element}
-          rotate={rotate}
-        />
+        <SingleLogoElement key={element.name} {...element} rotate={rotate} />
       ))}
     </Marquee>
   )
