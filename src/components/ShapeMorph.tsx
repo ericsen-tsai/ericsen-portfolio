@@ -9,17 +9,17 @@ function ShapeMorph({
   ratio?: number
 }) {
   const morphId = useRef<string>(
-    `id-${Math.floor(Math.random() * 100).toString()}`,
+    `id-${Math.floor(Math.random() * 100).toString()}`
   )
 
   const gradientId = useRef<string>(
-    `id-${Math.floor(Math.random() * 100).toString()}`,
+    `id-${Math.floor(Math.random() * 100).toString()}`
   )
   const stopPointOneId = useRef<string>(
-    `id-${Math.floor(Math.random() * 100).toString()}`,
+    `id-${Math.floor(Math.random() * 100).toString()}`
   )
   const stopPointTwoId = useRef<string>(
-    `id-${Math.floor(Math.random() * 100).toString()}`,
+    `id-${Math.floor(Math.random() * 100).toString()}`
   )
 
   useEffect(() => {
@@ -53,6 +53,7 @@ function ShapeMorph({
       xmlns="http://www.w3.org/2000/svg"
       width={(shortSideSize * ratio).toString()}
       height={shortSideSize.toString()}
+      className="dark:drop-shadow-glow"
     >
       <defs>
         <linearGradient id={gradientId.current} x1="0" x2="1" y1="1" y2="0">

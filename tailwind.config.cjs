@@ -3,6 +3,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     screens: {
@@ -40,6 +41,7 @@ module.exports = {
         'brand-blue': '#2E294E',
         'brand-green': '#1B998B',
         'brand-yellow': '#C5D86D',
+        'brand-smoke': '#f6f6f6',
       },
       textShadow: {
         sm: '0 1px 2px var(--tw-shadow-color)',
@@ -48,6 +50,13 @@ module.exports = {
         xl: '0 16px 32px var(--tw-shadow-color)',
         outline:
           '2px 2px 0px var(--tw-shadow-color), 1px 1px 0px var(--tw-shadow-color), 2px 2px 0px var(--tw-shadow-color), 2px 3px 0px var(--tw-shadow-color)',
+        glow: '0 0 5px #f6f6f6, 0 0 10px #f6f6f6, 0 0 15px #ec4899',
+      },
+      dropShadow: {
+        glow: [
+          '0 0 8px rgba(119, 190, 182, 0.8)',
+          '0 0 16px rgba(27, 153, 139, 0.8)',
+        ],
       },
     },
   },

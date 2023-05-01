@@ -26,12 +26,8 @@ const { title } = Astro.props
     <Navbar client:only="react" />
     <slot />
     <style is:global>
-      html {
-        background-color: #f6f6f6;
-      }
-
       body {
-        font-family: 'Montserrat', sans-serif;
+        @apply bg-gradient-to-r from-teal-100 to-fuchsia-300 font-sans dark:from-purple-900 dark:to-pink-500;
       }
 
       :root {
@@ -39,9 +35,19 @@ const { title } = Astro.props
       }
 
       ::selection {
-        background: rgba(214, 55, 46, 0.05);
-        color: #1b998b;
+        @apply bg-[#d8d8d8] text-[#1b998b];
       }
     </style>
+    <script>
+      if (
+        localStorage.getItem('color-theme') === 'dark' ||
+        (!('color-theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    </script>
   </body>
 </html>

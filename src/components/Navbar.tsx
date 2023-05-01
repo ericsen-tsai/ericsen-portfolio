@@ -1,6 +1,6 @@
-import Select, { type SingleValue, type OptionProps } from 'react-select'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import Logo from '@/assets/logo_white.png'
+import LogoDark from '@/assets/logo.png'
 import type { Language } from '@/types/language'
 import goToLangRoute from '@/utils/goToLangRoute'
 
@@ -10,8 +10,8 @@ type Option = {
 }
 
 const options: Option[] = [
-  { value: 'en', label: 'English' },
-  { value: 'zh-TW', label: '中文正體' },
+  { value: 'en', label: 'EN' },
+  { value: 'zh-TW', label: '中文' },
 ]
 
 const NAVBAR_CONFIG = [
@@ -42,44 +42,14 @@ const NAVBAR_CONFIG = [
   },
 ]
 
-type CustomOptionProps = OptionProps<Pick<Option, 'value'>, false>
-
-const CustomOption: React.FC<CustomOptionProps> = ({
-  innerProps,
-  children,
-}) => (
-  <div
-    {...innerProps}
-    className="cursor-pointer bg-white p-2 text-xs text-gray-900 hover:bg-brand-green hover:text-white"
-  >
-    {children}
-  </div>
-)
-
 function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isOnTop, setIsOnTop] = useState<boolean>(window.scrollY === 0)
-  const initialLangVal = {
-    value:
-      options.find(
-        (option) => option.value === (document.documentElement.lang || 'en'),
-      )?.value || options[0].value,
-    label:
-      options.find(
-        (option) => option.value === (document.documentElement.lang || 'en'),
-      )?.label || options[0].label,
-  } as Option
-
-  const [selectedLang, setSelectedLang] = useState<Pick<
-    Option,
-    'value'
-  > | null>(initialLangVal)
-
-  const handleChange = (option: SingleValue<Pick<Option, 'value'>>) => {
-    setSelectedLang(option)
-    goToLangRoute({ lang: (option?.value || 'en') as Language })
-  }
-
+  const [darkTheme, setDarkTheme] = useState<boolean>(
+    localStorage.getItem('color-theme') === 'dark' ||
+      (!('color-theme' in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+  )
   const handleToggle = () => setIsOpen((prev) => !prev)
 
   useEffect(() => {
@@ -97,45 +67,103 @@ function Navbar() {
     return () => document.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const handleToggleTheme = () => {
+    setDarkTheme((prev) => !prev)
+    localStorage.setItem(
+      'color-theme',
+      localStorage.getItem('color-theme') === 'dark' ? 'light' : 'dark'
+    )
+    document.documentElement.classList.toggle('dark')
+  }
+
   return (
     <nav
       className={`fixed top-0 z-[999] h-[var(--navbar-height)] w-screen transition-all ${
         isOnTop ? 'bg-[transparent]' : 'bg-black/10 backdrop-blur-md'
       }`}
     >
-      <div className="relative z-20 flex h-[var(--navbar-height)] items-center pr-6 pl-6 md:px-10">
+      <div className="relative z-20 flex h-[var(--navbar-height)] items-center pr-6 pl-6 dark:text-brand-smoke md:px-10">
         <button
-          className="flex aspect-square h-[60%] cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-brand-green to-brand-yellow p-2 hover:animate-flash"
-          onClick={() => goToLangRoute({
-            lang: document.documentElement.lang as Language,
-            targetPathName: '',
-          })}
+          className="flex aspect-square h-[60%] cursor-pointer items-center justify-center rounded-lg transition-all hover:animate-flash hover:ring-2 hover:ring-brand-green"
+          onClick={() =>
+            goToLangRoute({
+              lang: document.documentElement.lang as Language,
+              targetPathName: '',
+            })
+          }
         >
-          <img src={Logo} className="aspect-square h-full" />
+          <img
+            src={darkTheme || isOpen ? Logo : LogoDark}
+            className="aspect-square h-full p-1"
+          />
         </button>
-        <Select
-          value={selectedLang}
-          defaultValue={initialLangVal}
-          onChange={(option) => handleChange(option)}
-          options={options}
-          className="ml-auto"
-          classNames={{
-            control: (state) => (state.isFocused
-              ? '!border-brand-green !shadow-md !text-xs'
-              : '!text-xs'),
-          }}
-          components={{ Option: CustomOption }}
-        />
+        <div className="ml-auto flex items-center gap-1">
+          {options.map((option, ind) => (
+            <Fragment key={option.label}>
+              <button
+                onClick={() =>
+                  goToLangRoute({ lang: (option?.value || 'en') as Language })
+                }
+                className={`font-black transition-all duration-500 hover:text-brand-green/80 dark:hover:text-brand-smoke/80 ${
+                  option.value === document.documentElement.lang
+                    ? 'text-brand-green underline dark:text-brand-smoke'
+                    : isOpen
+                    ? 'text-brand-smoke'
+                    : ''
+                }`}
+              >
+                {option.label}
+              </button>
+              {ind !== options.length - 1 && (
+                <p
+                  className={`${
+                    isOpen ? 'text-brand-smoke' : ''
+                  } transition-all duration-500`}
+                >
+                  |
+                </p>
+              )}
+            </Fragment>
+          ))}
+        </div>
+        <button
+          type="button"
+          className="mx-3 rounded-lg p-2.5 text-sm text-brand-green transition-all hover:bg-brand-green/20 hover:ring-2 hover:ring-brand-green dark:text-brand-smoke dark:hover:ring-brand-smoke"
+          onClick={handleToggleTheme}
+        >
+          <svg
+            className={`${darkTheme ? 'hidden' : ''} h-5 w-5`}
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg
+            className={`${darkTheme ? '' : 'hidden'} h-5 w-5`}
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </button>
         <h3
-          className={`ml-5 mr-2 transition-all duration-500 md:ml-10 ${
-            isOpen ? 'text-white' : ''
+          className={`mr-2 transition-all duration-500 ${
+            isOpen ? 'text-brand-smoke' : ''
           } scale-x-[1.2] font-light`}
         >
           menu
         </h3>
         <button
           className={`cursor-pointer outline-none ${
-            isOpen ? '[&>div]:bg-white' : '[&>div]:bg-black'
+            isOpen
+              ? '[&>div]:bg-brand-smoke'
+              : '[&>div]:bg-black dark:[&>div]:bg-brand-smoke'
           }`}
           type="button"
           onClick={handleToggle}
@@ -144,14 +172,14 @@ function Navbar() {
             className={`m-[3px] transition-all duration-500 ${
               isOpen
                 ? 'h-[5px] w-[40px] -translate-x-[4px] translate-y-[5px] -rotate-45'
-                : 'h-[3px] w-[25px] rotate-[113.5deg]'
+                : 'h-[2px] w-[25px] rotate-[113.5deg]'
             }`}
           />
           <div
             className={`m-[3px] transition-all duration-500 ${
               isOpen
                 ? 'h-[5px] w-[40px] -translate-x-[4px] -translate-y-[4px] rotate-45'
-                : 'h-[3px] w-[25px] -translate-x-[10px] -translate-y-[5px] rotate-[113.5deg]'
+                : 'h-[2px] w-[25px] -translate-x-[10px] -translate-y-[5px] rotate-[113.5deg]'
             }`}
           />
         </button>
@@ -169,7 +197,7 @@ function Navbar() {
             <div className="absolute h-[60px] w-[20rem] translate-x-[-20rem] overflow-hidden transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px] md:w-[35rem] md:translate-x-[-35rem]">
               <a
                 role="button"
-                className="absolute block h-[60px] translate-x-[20rem] overflow-hidden text-white  transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px] md:translate-x-[35rem]"
+                className="absolute block h-[60px] translate-x-[20rem] overflow-hidden text-brand-smoke  transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px] md:translate-x-[35rem]"
                 onClick={() => {
                   setIsOpen(false)
                   goToLangRoute({
@@ -184,7 +212,7 @@ function Navbar() {
             </div>
             <a
               role="button"
-              className={`block before:text-white/50 ${list.pseudoBeforeClassName}`}
+              className={`block before:text-brand-smoke/50 ${list.pseudoBeforeClassName}`}
               onClick={() => {
                 setIsOpen(false)
                 goToLangRoute({
