@@ -68,6 +68,11 @@ function Navbar() {
 
   const handleToggleTheme = () => {
     setDarkTheme((prev) => !prev)
+    localStorage.setItem(
+      'color-theme',
+      localStorage.getItem('color-theme') === 'dark' ? 'light' : 'dark'
+    )
+    document.documentElement.classList.toggle('dark')
   }
 
   return (
@@ -76,9 +81,9 @@ function Navbar() {
         isOnTop ? 'bg-[transparent]' : 'bg-black/10 backdrop-blur-md'
       }`}
     >
-      <div className="relative z-20 flex h-[var(--navbar-height)] items-center pr-6 pl-6 md:px-10">
+      <div className="relative z-20 flex h-[var(--navbar-height)] items-center pr-6 pl-6 dark:text-brand-smoke md:px-10">
         <button
-          className="flex aspect-square h-[60%] cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-brand-green to-brand-yellow p-2 hover:animate-flash"
+          className="flex aspect-square h-[60%] skew-y-3 cursor-pointer items-center justify-center rounded-lg bg-gradient-to-r from-brand-green to-brand-yellow p-2 hover:animate-flash"
           onClick={() =>
             goToLangRoute({
               lang: document.documentElement.lang as Language,
@@ -95,7 +100,7 @@ function Navbar() {
                 onClick={() =>
                   goToLangRoute({ lang: (option?.value || 'en') as Language })
                 }
-                className={`transition-all duration-500 hover:text-brand-green/70 ${
+                className={`font-black transition-all duration-500 hover:text-brand-green/70 ${
                   option.value === document.documentElement.lang
                     ? 'text-brand-green underline'
                     : isOpen
@@ -152,7 +157,9 @@ function Navbar() {
         </h3>
         <button
           className={`cursor-pointer outline-none ${
-            isOpen ? '[&>div]:bg-white' : '[&>div]:bg-black'
+            isOpen
+              ? '[&>div]:bg-brand-smoke'
+              : '[&>div]:bg-black dark:[&>div]:bg-brand-smoke'
           }`}
           type="button"
           onClick={handleToggle}
