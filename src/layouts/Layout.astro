@@ -43,5 +43,15 @@ const { title } = Astro.props
         color: #1b998b;
       }
     </style>
+    <script>
+      if (
+        localStorage.getItem('color-theme') === 'dark' ||
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+      ) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    </script>
   </body>
 </html>

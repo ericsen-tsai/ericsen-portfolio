@@ -44,7 +44,11 @@ const NAVBAR_CONFIG = [
 function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isOnTop, setIsOnTop] = useState<boolean>(window.scrollY === 0)
-
+  const [darkTheme, setDarkTheme] = useState<boolean>(
+    localStorage.getItem('color-theme') === 'dark' ||
+      (!('color-theme' in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+  )
   const handleToggle = () => setIsOpen((prev) => !prev)
 
   useEffect(() => {
@@ -61,6 +65,10 @@ function Navbar() {
 
     return () => document.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const handleToggleTheme = () => {
+    setDarkTheme((prev) => !prev)
+  }
 
   return (
     <nav
@@ -97,12 +105,46 @@ function Navbar() {
               >
                 {option.label}
               </button>
-              {ind !== options.length - 1 && <p>|</p>}
+              {ind !== options.length - 1 && (
+                <p
+                  className={`${
+                    isOpen ? 'text-white' : ''
+                  } transition-all duration-500`}
+                >
+                  |
+                </p>
+              )}
             </Fragment>
           ))}
         </div>
+        <button
+          type="button"
+          className="mx-3 rounded-lg p-2.5 text-sm text-brand-green transition-all hover:bg-brand-green/20 hover:ring-2 hover:ring-brand-green"
+          onClick={handleToggleTheme}
+        >
+          <svg
+            className={`${darkTheme ? 'hidden' : ''} h-5 w-5`}
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg
+            className={`${darkTheme ? '' : 'hidden'} h-5 w-5`}
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </button>
         <h3
-          className={`ml-5 mr-2 transition-all duration-500 md:ml-10 ${
+          className={`mr-2 transition-all duration-500 ${
             isOpen ? 'text-white' : ''
           } scale-x-[1.2] font-light`}
         >
