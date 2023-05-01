@@ -1,5 +1,6 @@
 import { useState, useEffect, Fragment } from 'react'
 import Logo from '@/assets/logo_white.png'
+import LogoDark from '@/assets/logo.png'
 import type { Language } from '@/types/language'
 import goToLangRoute from '@/utils/goToLangRoute'
 
@@ -83,7 +84,7 @@ function Navbar() {
     >
       <div className="relative z-20 flex h-[var(--navbar-height)] items-center pr-6 pl-6 dark:text-brand-smoke md:px-10">
         <button
-          className="flex aspect-square h-[60%] skew-y-3 cursor-pointer items-center justify-center rounded-lg bg-gradient-to-r from-brand-green to-brand-yellow p-2 hover:animate-flash"
+          className="flex aspect-square h-[60%] cursor-pointer items-center justify-center rounded-lg transition-all hover:animate-flash hover:ring-2 hover:ring-brand-green"
           onClick={() =>
             goToLangRoute({
               lang: document.documentElement.lang as Language,
@@ -91,7 +92,10 @@ function Navbar() {
             })
           }
         >
-          <img src={Logo} className="aspect-square h-full" />
+          <img
+            src={darkTheme || isOpen ? Logo : LogoDark}
+            className="aspect-square h-full p-1"
+          />
         </button>
         <div className="ml-auto flex items-center gap-1">
           {options.map((option, ind) => (
@@ -100,11 +104,11 @@ function Navbar() {
                 onClick={() =>
                   goToLangRoute({ lang: (option?.value || 'en') as Language })
                 }
-                className={`font-black transition-all duration-500 hover:text-brand-green/70 ${
+                className={`font-black transition-all duration-500 hover:text-brand-green/80 dark:hover:text-brand-smoke/80 ${
                   option.value === document.documentElement.lang
-                    ? 'text-brand-green underline'
+                    ? 'text-brand-green underline dark:text-brand-smoke'
                     : isOpen
-                    ? 'text-white'
+                    ? 'text-brand-smoke'
                     : ''
                 }`}
               >
@@ -113,7 +117,7 @@ function Navbar() {
               {ind !== options.length - 1 && (
                 <p
                   className={`${
-                    isOpen ? 'text-white' : ''
+                    isOpen ? 'text-brand-smoke' : ''
                   } transition-all duration-500`}
                 >
                   |
@@ -124,7 +128,7 @@ function Navbar() {
         </div>
         <button
           type="button"
-          className="mx-3 rounded-lg p-2.5 text-sm text-brand-green transition-all hover:bg-brand-green/20 hover:ring-2 hover:ring-brand-green"
+          className="mx-3 rounded-lg p-2.5 text-sm text-brand-green transition-all hover:bg-brand-green/20 hover:ring-2 hover:ring-brand-green dark:text-brand-smoke dark:hover:ring-brand-smoke"
           onClick={handleToggleTheme}
         >
           <svg
@@ -150,7 +154,7 @@ function Navbar() {
         </button>
         <h3
           className={`mr-2 transition-all duration-500 ${
-            isOpen ? 'text-white' : ''
+            isOpen ? 'text-brand-smoke' : ''
           } scale-x-[1.2] font-light`}
         >
           menu
@@ -168,14 +172,14 @@ function Navbar() {
             className={`m-[3px] transition-all duration-500 ${
               isOpen
                 ? 'h-[5px] w-[40px] -translate-x-[4px] translate-y-[5px] -rotate-45'
-                : 'h-[3px] w-[25px] rotate-[113.5deg]'
+                : 'h-[2px] w-[25px] rotate-[113.5deg]'
             }`}
           />
           <div
             className={`m-[3px] transition-all duration-500 ${
               isOpen
                 ? 'h-[5px] w-[40px] -translate-x-[4px] -translate-y-[4px] rotate-45'
-                : 'h-[3px] w-[25px] -translate-x-[10px] -translate-y-[5px] rotate-[113.5deg]'
+                : 'h-[2px] w-[25px] -translate-x-[10px] -translate-y-[5px] rotate-[113.5deg]'
             }`}
           />
         </button>
@@ -193,7 +197,7 @@ function Navbar() {
             <div className="absolute h-[60px] w-[20rem] translate-x-[-20rem] overflow-hidden transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px] md:w-[35rem] md:translate-x-[-35rem]">
               <a
                 role="button"
-                className="absolute block h-[60px] translate-x-[20rem] overflow-hidden text-white  transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px] md:translate-x-[35rem]"
+                className="absolute block h-[60px] translate-x-[20rem] overflow-hidden text-brand-smoke  transition-all duration-500 ease-in-out group-hover:translate-x-0 md:h-[120px] md:translate-x-[35rem]"
                 onClick={() => {
                   setIsOpen(false)
                   goToLangRoute({
@@ -208,7 +212,7 @@ function Navbar() {
             </div>
             <a
               role="button"
-              className={`block before:text-white/50 ${list.pseudoBeforeClassName}`}
+              className={`block before:text-brand-smoke/50 ${list.pseudoBeforeClassName}`}
               onClick={() => {
                 setIsOpen(false)
                 goToLangRoute({
