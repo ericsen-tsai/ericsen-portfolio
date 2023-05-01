@@ -19,9 +19,7 @@ const changelogEntries: changelogEntry[] = [
     DescriptionElement: () => (
       <div className="flex flex-col items-start md:items-end">
         <p className="inline-block">
-          Served as a beach cleanup
-          {' '}
-          <br />
+          Served as a beach cleanup <br />
           staff member with
         </p>
         <a
@@ -52,9 +50,7 @@ const changelogEntries: changelogEntry[] = [
     DescriptionElement: () => (
       <div className="flex flex-col items-start md:items-end">
         <p className="inline-block">
-          Participated in a beach
-          {' '}
-          <br />
+          Participated in a beach <br />
           cleanup with
         </p>
         <a
@@ -151,7 +147,7 @@ const changelogEntries: changelogEntry[] = [
         <a
           href="https://lightningww.com/"
           target="_blank"
-          className="text-[#e0c112] underline"
+          className="text-[#D33B33] underline dark:text-[#ff8997]"
           rel="noreferrer"
         >
           Lightning Tech Co., Ltd.
@@ -193,7 +189,7 @@ const changelogEntries: changelogEntry[] = [
         <a
           href="https://www.yudacang.com/"
           target="_blank"
-          className="text-[#A92E2D] underline"
+          className="text-[#D33B33] underline dark:text-[#ff8997]"
           rel="noreferrer"
         >
           YuDaCang
@@ -209,7 +205,7 @@ const changelogEntries: changelogEntry[] = [
       <a
         href="https://workstory.s3.amazonaws.com/assets/2758201/4658605201967232.pdf"
         target="_blank"
-        className="text-[#102F7D] underline"
+        className="text-[#D33B33] underline dark:text-[#ff8997]"
         rel="noreferrer"
       >
         TOEFL score of 95
@@ -343,7 +339,7 @@ const changelogEntries: changelogEntry[] = [
         <a
           href="https://www.cupoy.com/marathon/ml100/intro"
           target="_blank"
-          className="text-[#D33B33] underline"
+          className="text-[#D33B33] underline dark:text-[#ff8997]"
           rel="noreferrer"
         >
           100-day machine learning marathon challenge
@@ -395,12 +391,11 @@ const changelogEntries: changelogEntry[] = [
     space: 80,
     DescriptionElement: () => (
       <p>
-        Started studying for bachelor's degree at
-        {' '}
+        Started studying for bachelor's degree at{' '}
         <a
           href="https://bme.ncku.edu.tw/?Lang=en"
           target="_blank"
-          className="text-[#912B37] underline"
+          className="text-[#D33B33] underline dark:text-[#ff8997]"
           rel="noreferrer"
         >
           BME Department, NCKU

@@ -32,7 +32,7 @@ const { entries } = Astro.props
             }}
           >
             <div
-              class={`absolute top-0 w-[var(--timeline-line-width)] bg-brand-green ${
+              class={`bg-brand-green dark:bg-brand-smoke absolute top-0 w-[var(--timeline-line-width)] ${
                 entry.type === 'life'
                   ? 'left-0 -translate-x-1/2 md:right-0 md:left-auto md:translate-x-1/2'
                   : 'left-0 -translate-x-1/2'
@@ -46,7 +46,7 @@ const { entries } = Astro.props
                 entry.type === 'life'
                   ? 'left-0 -translate-x-1/2 md:right-0 md:left-auto md:translate-x-1/2'
                   : 'left-0 -translate-x-1/2'
-              } h-[var(--timeline-dot-size)] w-[var(--timeline-dot-size)] rounded-full bg-brand-green before:absolute before:left-1/2 before:top-[calc(-1*var(--entry-height))] before:h-[var(--entry-height)] before:w-[var(--timeline-line-width)] before:-translate-x-1/2 before:bg-brand-green before:content-[''] after:absolute after:top-1/2 after:bg-brand-green ${
+              } bg-brand-green dark:bg-brand-smoke before:bg-brand-green dark:before:bg-brand-smoke after:bg-brand-green dark:after:bg-brand-smoke h-[var(--timeline-dot-size)] w-[var(--timeline-dot-size)] rounded-full before:absolute before:left-1/2 before:top-[calc(-1*var(--entry-height))] before:h-[var(--entry-height)] before:w-[var(--timeline-line-width)] before:-translate-x-1/2 before:content-[''] after:absolute after:top-1/2 ${
                 entry.type === 'life'
                   ? 'after:left-0 md:after:right-0 md:after:left-auto'
                   : 'after:left-0'
@@ -57,8 +57,8 @@ const { entries } = Astro.props
                 entry.type === 'life' ? 'ml-16 md:mr-16 md:ml-0' : 'ml-16'
               } inline-block translate-y-5 font-black opacity-0 ${
                 entry.description || entry.DescriptionElement
-                  ? 'text-base text-brand-orange'
-                  : 'text-2xl text-brand-green'
+                  ? 'text-brand-orange text-base'
+                  : 'text-brand-green dark:text-brand-smoke text-2xl'
               }`}
               data-in-view
             >
@@ -68,7 +68,7 @@ const { entries } = Astro.props
               <span
                 class={`${
                   entry.type === 'life' ? 'ml-16 md:mr-16 md:ml-0' : 'ml-16'
-                } block translate-y-5 text-lg opacity-0`}
+                } block translate-y-5 text-lg opacity-0 dark:text-stone-300`}
                 data-in-view
               >
                 {entry.description}
@@ -78,7 +78,7 @@ const { entries } = Astro.props
               <span
                 class={`${
                   entry.type === 'life' ? 'ml-16 md:mr-16 md:ml-0' : 'ml-16'
-                } block translate-y-5 text-lg opacity-0`}
+                } block translate-y-5 text-lg opacity-0 dark:text-stone-300`}
                 data-in-view
               >
                 <DescriptionElement />
