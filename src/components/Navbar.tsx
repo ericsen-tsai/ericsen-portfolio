@@ -1,5 +1,4 @@
-import Select, { type SingleValue, type OptionProps } from 'react-select'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import Logo from '@/assets/logo_white.png'
 import type { Language } from '@/types/language'
 import goToLangRoute from '@/utils/goToLangRoute'
@@ -10,8 +9,8 @@ type Option = {
 }
 
 const options: Option[] = [
-  { value: 'en', label: 'English' },
-  { value: 'zh-TW', label: '中文正體' },
+  { value: 'en', label: 'EN' },
+  { value: 'zh-TW', label: '中文' },
 ]
 
 const NAVBAR_CONFIG = [
@@ -42,43 +41,9 @@ const NAVBAR_CONFIG = [
   },
 ]
 
-type CustomOptionProps = OptionProps<Pick<Option, 'value'>, false>
-
-const CustomOption: React.FC<CustomOptionProps> = ({
-  innerProps,
-  children,
-}) => (
-  <div
-    {...innerProps}
-    className="cursor-pointer bg-white p-2 text-xs text-gray-900 hover:bg-brand-green hover:text-white"
-  >
-    {children}
-  </div>
-)
-
 function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isOnTop, setIsOnTop] = useState<boolean>(window.scrollY === 0)
-  const initialLangVal = {
-    value:
-      options.find(
-        (option) => option.value === (document.documentElement.lang || 'en'),
-      )?.value || options[0].value,
-    label:
-      options.find(
-        (option) => option.value === (document.documentElement.lang || 'en'),
-      )?.label || options[0].label,
-  } as Option
-
-  const [selectedLang, setSelectedLang] = useState<Pick<
-    Option,
-    'value'
-  > | null>(initialLangVal)
-
-  const handleChange = (option: SingleValue<Pick<Option, 'value'>>) => {
-    setSelectedLang(option)
-    goToLangRoute({ lang: (option?.value || 'en') as Language })
-  }
 
   const handleToggle = () => setIsOpen((prev) => !prev)
 
@@ -106,26 +71,34 @@ function Navbar() {
       <div className="relative z-20 flex h-[var(--navbar-height)] items-center pr-6 pl-6 md:px-10">
         <button
           className="flex aspect-square h-[60%] cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-brand-green to-brand-yellow p-2 hover:animate-flash"
-          onClick={() => goToLangRoute({
-            lang: document.documentElement.lang as Language,
-            targetPathName: '',
-          })}
+          onClick={() =>
+            goToLangRoute({
+              lang: document.documentElement.lang as Language,
+              targetPathName: '',
+            })
+          }
         >
           <img src={Logo} className="aspect-square h-full" />
         </button>
-        <Select
-          value={selectedLang}
-          defaultValue={initialLangVal}
-          onChange={(option) => handleChange(option)}
-          options={options}
-          className="ml-auto"
-          classNames={{
-            control: (state) => (state.isFocused
-              ? '!border-brand-green !shadow-md !text-xs'
-              : '!text-xs'),
-          }}
-          components={{ Option: CustomOption }}
-        />
+        <div className="ml-auto flex items-center gap-1">
+          {options.map((option, ind) => (
+            <Fragment key={option.label}>
+              <button
+                onClick={() =>
+                  goToLangRoute({ lang: (option?.value || 'en') as Language })
+                }
+                className={`hover:text-brand-green/70 ${
+                  option.value === document.documentElement.lang
+                    ? 'text-brand-green underline'
+                    : ''
+                }`}
+              >
+                {option.label}
+              </button>
+              {ind !== options.length - 1 && <p>|</p>}
+            </Fragment>
+          ))}
+        </div>
         <h3
           className={`ml-5 mr-2 transition-all duration-500 md:ml-10 ${
             isOpen ? 'text-white' : ''
