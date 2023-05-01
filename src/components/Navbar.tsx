@@ -87,9 +87,11 @@ function Navbar() {
                 onClick={() =>
                   goToLangRoute({ lang: (option?.value || 'en') as Language })
                 }
-                className={`hover:text-brand-green/70 ${
+                className={`transition-all duration-500 hover:text-brand-green/70 ${
                   option.value === document.documentElement.lang
                     ? 'text-brand-green underline'
+                    : isOpen
+                    ? 'text-white'
                     : ''
                 }`}
               >
