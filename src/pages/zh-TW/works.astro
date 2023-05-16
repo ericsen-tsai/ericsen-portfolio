@@ -1,0 +1,15 @@
+---
+import { changeLanguage } from 'i18next'
+import ProjectCarousel from '../../components/ProjectCarousel'
+import Layout from '../../layouts/Layout.astro'
+
+changeLanguage('zh-TW')
+---
+
+<Layout title="ET's studio">
+  <main class="flex min-h-screen w-full items-center">
+    <ProjectCarousel client:only="react" />
+  </main>
+</Layout>
+
+<style></style>

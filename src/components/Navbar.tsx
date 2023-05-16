@@ -82,7 +82,7 @@ function Navbar() {
         isOnTop ? 'bg-[transparent]' : 'bg-black/10 backdrop-blur-md'
       }`}
     >
-      <div className="relative z-20 flex h-[var(--navbar-height)] items-center pr-6 pl-6 dark:text-brand-smoke md:px-10">
+      <div className="relative z-20 flex h-[var(--navbar-height)] items-center px-6 dark:text-brand-smoke md:px-10">
         <button
           className="flex aspect-square h-[60%] cursor-pointer items-center justify-center rounded-lg transition-all hover:animate-flash hover:ring-2 hover:ring-brand-green"
           onClick={() =>
@@ -171,15 +171,15 @@ function Navbar() {
           <div
             className={`m-[3px] transition-all duration-500 ${
               isOpen
-                ? 'h-[5px] w-[40px] -translate-x-[4px] translate-y-[5px] -rotate-45'
+                ? 'h-[5px] w-[40px] translate-x-[-4px] translate-y-[5px] -rotate-45'
                 : 'h-[2px] w-[25px] rotate-[113.5deg]'
             }`}
           />
           <div
             className={`m-[3px] transition-all duration-500 ${
               isOpen
-                ? 'h-[5px] w-[40px] -translate-x-[4px] -translate-y-[4px] rotate-45'
-                : 'h-[2px] w-[25px] -translate-x-[10px] -translate-y-[5px] rotate-[113.5deg]'
+                ? 'h-[5px] w-[40px] translate-x-[-4px] translate-y-[-4px] rotate-45'
+                : 'h-[2px] w-[25px] translate-x-[-10px] translate-y-[-5px] rotate-[113.5deg]'
             }`}
           />
         </button>
@@ -189,7 +189,7 @@ function Navbar() {
         className={`${
           isOpen
             ? 'h-screen overflow-y-hidden opacity-100'
-            : 'h-0 -translate-y-[100vh] opacity-0'
+            : 'h-0 translate-y-[-100vh] opacity-0'
         } absolute left-0 top-0 z-10 flex w-screen flex-col items-start justify-center gap-5 overflow-hidden bg-black/80 px-5 font-sans text-4xl font-extrabold transition-all duration-500 xs:text-6xl md:text-8xl [&>li]:ml-3 [&>li]:origin-left [&>li]:scale-x-[1.3] md:[&>li]:ml-[min(30vw,10%)]`}
       >
         {NAVBAR_CONFIG.map((list) => (
