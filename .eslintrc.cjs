@@ -3,6 +3,7 @@ const path = require('path')
 
 /** @type {import("eslint").Linter.Config} */
 const config = {
+  root: true,
   overrides: [
     {
       extends: [
@@ -39,6 +40,7 @@ const config = {
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:astro/recommended',
+    'plugin:tailwindcss/recommended',
   ],
   rules: {
     '@typescript-eslint/consistent-type-imports': [
@@ -49,7 +51,7 @@ const config = {
       },
     ],
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-    semi: 'off',
+    semi: ['error', 'never'],
     '@typescript-eslint/semi': ['error', 'never'],
     'no-void': ['error', { allowAsStatement: true }],
     'no-console': 'off',
@@ -66,6 +68,7 @@ const config = {
         extensions: ['.ts', '.tsx', '.astro'],
       },
     },
+    tailwindcss: { config: 'tailwind.config.cjs' },
   },
 }
 
