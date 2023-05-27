@@ -99,6 +99,7 @@ const { entries } = Astro.props
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('timeline-in-view')
+            console.log(entry)
             observer.unobserve(entry.target)
           }
         })
@@ -120,6 +121,6 @@ const { entries } = Astro.props
     --timeline-dot-size: 8px;
   }
   .timeline-in-view {
-    @apply translate-y-[calc(var(--entry-height)*(-0.1))] opacity-100 transition-all duration-1000;
+    @apply !translate-y-[calc(var(--entry-height)*(-0.1))] !opacity-100 !transition-all !duration-1000;
   }
 </style>
