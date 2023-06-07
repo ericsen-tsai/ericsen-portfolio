@@ -95,7 +95,7 @@ function SingleLogoElement({
         alt={name}
         className={`h-[72%] ${aspectRatioClassName} transition-all group-hover:blur-sm group-hover:grayscale`}
       />
-      <p className="invisible absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-black text-white shadow-black text-shadow-outline group-hover:visible">
+      <p className="invisible absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-black text-white shadow-black text-shadow-outline group-hover:visible">
         {name}
       </p>
     </div>

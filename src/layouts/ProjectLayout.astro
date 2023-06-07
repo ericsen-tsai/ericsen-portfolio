@@ -1,0 +1,74 @@
+---
+import Navbar from '../components/Navbar'
+import '@fontsource/bowlby-one'
+import '@fontsource/montserrat'
+import ScrollDownIcon from '@/assets/scroll-down.png'
+import i18next from 'i18next'
+import { HeadHrefLangs } from 'astro-i18next/components'
+export interface Props {
+  frontmatter: {
+    title: string
+    imgUrl: string
+  }
+}
+
+const { frontmatter } = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang={i18next.language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/logo_white.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{frontmatter.title}</title>
+    <HeadHrefLangs />
+  </head>
+  <body>
+    <Navbar client:only="react" />
+    <main
+      class="relative flex overflow-hidden pt-[calc(var(--navbar-height)+2rem)]"
+    >
+      <div class="flex-1">
+        <slot />
+      </div>
+      <div
+        class="max-h-[calc(100vh-var(--navbar-height)-2rem)] flex-1 translate-x-[2rem] overflow-y-scroll"
+      >
+        <img
+          src={frontmatter.imgUrl}
+          alt={frontmatter.title}
+          class="rounded-lg"
+        />
+      </div>
+      <div class="absolute bottom-0 right-0 animate-bounce">
+        <img src={ScrollDownIcon} alt="scroll-down" class="aspect-auto h-20" />
+      </div>
+    </main>
+    <style is:global>
+      body {
+        @apply bg-gradient-to-r from-teal-100 to-fuchsia-300 font-sans dark:from-purple-900 dark:to-pink-500;
+      }
+
+      :root {
+        --navbar-height: 4rem;
+      }
+
+      ::selection {
+        @apply bg-[#d8d8d8] text-[#1b998b];
+      }
+    </style>
+    <script>
+      if (
+        localStorage.getItem('color-theme') === 'dark' ||
+        (!('color-theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    </script>
+  </body>
+</html>

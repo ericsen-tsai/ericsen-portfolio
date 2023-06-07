@@ -9,7 +9,7 @@ changeLanguage('en')
 
 <Layout title="ET's studio">
   <main class="relative h-screen w-full overflow-hidden dark:text-brand-smoke">
-    <div class="absolute top-0 left-0 z-10 h-full w-full px-10">
+    <div class="absolute left-0 top-0 z-10 h-full w-full px-10">
       <p class="mt-[max(15vw,10rem)] text-xl font-bold text-brand-green">
         {t('home.introPrefix')}
       </p>
@@ -44,7 +44,7 @@ changeLanguage('en')
     </div>
     <div class="relative z-10 ml-[50%]">
       <h1
-        class="absolute top-[max(20vw,15rem)] right-[2rem] animate-breath text-right text-[min(30rem,20vw)] font-black leading-[min(9.5rem,20vw)] dark:text-shadow-glow md:right-[min(-1.5rem,-1vw)]"
+        class="absolute right-[2rem] top-[max(20vw,15rem)] animate-breath text-right text-[min(30rem,20vw)] font-black leading-[min(9.5rem,20vw)] dark:text-shadow-glow md:right-[min(-1.5rem,-1vw)]"
       >
         Ericsen
       </h1>
@@ -52,7 +52,7 @@ changeLanguage('en')
     <div class="relative z-0 hidden md:ml-[50%] md:inline-block">
       <ShapeMorph client:only="react" ratio={1.5} shortSideSize={1000} />
     </div>
-    <div class="absolute top-[5rem] left-[30%] z-0 md:hidden">
+    <div class="absolute left-[30%] top-[5rem] z-0 md:hidden">
       <ShapeMorph client:only="react" ratio={1} shortSideSize={700} />
     </div>
   </main>
